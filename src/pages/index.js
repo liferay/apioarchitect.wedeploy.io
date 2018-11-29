@@ -19,7 +19,7 @@ class Index extends Component {
     }
 
     render() {
-        const description = "Start using Gatsby for make powerful static sites 💖";
+        const description = "Start using APIO Architect for making powerful APIs 💖";
 
         return (
             <div className="home">
