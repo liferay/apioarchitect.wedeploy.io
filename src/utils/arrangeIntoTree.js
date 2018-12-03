@@ -47,7 +47,7 @@ function arrangeIntoTree(paths) {
 
 	sortBy(tree[0]);
 
-	return tree;
+	return tree[0].items;
 }
 
 const regexSpace = /\s+/g;
