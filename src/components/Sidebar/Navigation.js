@@ -30,7 +30,7 @@ class Navigation extends Component {
 
         return sectionList.map((section, index) => {
             let style = classNames({
-                'active': this._isActive(section) === true,
+                'active': true,
                 'nav-heading': section.items
             });
 
