@@ -3,16 +3,15 @@ title: "Types"
 weight: 5
 ---
 
-One of the pillars of the evolvable APIs we are proposing is the shared vocabularies. You can read more detailed information [here](). The principal reason to worry about this is to avoid coupling our external consumers with our internal details. Having to create a explicit transfer object allow us to change the internal part of our project without having to change its consumers.
+Shared vocabularies are a pillar of evolvable APIs. They avoid coupling external consumers with internal details. Creating an explicit transfer object lets the project internals change without requiring consumers to change.
 
-After creating our transfer object, you'll obtain a list of features out of the box, like:
+Creating the transfer object makes these features available:
 
- * Serialization of your entities in all [supported formats]()
- * Deserialization for creating/updating actions
- * Types documentation, APIO will track all your types and it will generate documentation in the form of [OpenAPI profile]() or [Hydra profile]()
- 
- 
-We have to create an annotated interface, something like this:
+* Serialization of your entities in all supported formats
+* Deserialization for creating/updating actions
+* Type documentation: Apio will track all your types and generate documentation in OpenAPI or Hydra. 
+
+First, you must create an annotated interface that extends the `Identifier` interface parameterized with the type. This tells Apio which type class identifies the resource. In this example, the type is `Long`: 
 
 ```java
 @Type("BlogPosting")
@@ -49,22 +48,11 @@ public interface BlogPosting extends Identifier<Long> {
 }
 ```
 
-Now let’s see each annotation in detail. 
-
-
-## Identifier
-
-When defining your interface for your type, you have to extend from the `Identifier` interface. This is the way to tell Apio what is the class that identifies that resource, in this example the type `Long`. 
-
-```
-public interface BlogPosting extends Identifier<Long> {
-
-}
-```
+The sections that follow describe each annotation. 
 
 ## Type
 
-The `Type` annotation is used to define an interface as a type, it has a property value where you have to define the name of the type:
+The `@Type` annotation defines an interface as a type. Its value defines the type's name. For example, the value here is `BlogPosting`:
 
 ```
 @Type("BlogPosting")
@@ -73,45 +61,41 @@ public interface BlogPosting extends Identifier<Long> {
 }
 ```
 
-It also includes a `schemaURL` parameter that let you configure the schema used. You can read more about schemas [here]().
+This annotation also includes a `schemaURL` parameter that lets you configure the schema used. 
 
 ## Id
 
-Your interface must have a method that returns the identifier of the resource. You will have to add a `@Id` annotation to that method to indicate it.
+Your interface must have a method annotated with `@Id` that returns the resource's identifier. The method's return type must match the type that you extended `Identifier` with. For example, this `getId` method returns a `Long` and is annotated with `@Id`:
 
 ```java
 @Id
 public Long getId()
 ```
 
-**Note: the return type of the annotated method should match the type defined when extending `Identifier`**
-
 ## Field
 
-For each of your fields that you want to return in the responses, you need to include the `@Field` annotation with the name you want to expose.
+Each method that returns a field in the responses must be annotated with the `@Field` annotation. This annotation must also contain the field's name as you want it to appear in the responses. By including a `Locale` argument in these methods, Apio makes the field localizable. Apio also parses the return type for use in the API documentation. 
 
-As you can see you can include arguments like `Locale` and Apio will take them into account that the field is localizable. It will also parse the return type to use it in the API documentation.
+For example, this `getArticleBody` method is annotated with `@Field("articleBody")` and takes a `Locale` argument:
 
 ```java
 @Field("articleBody")
 public String getArticleBody(Locale locale)
 ```
 
-Additional properties: 
+The `@Field` annotation contains these additional properties: 
 
-* `schemaURL`: let you configure the schema used. You can learn more about schemas [here]().
-* `mode`: the type interface is used for converting the object to a supported format and for parsing the body in a request. Some fields are only relevant in one of this tasks. Using `mode` property allow you to choose when the property is used:
-	* `READ_ONLY`: it will only be used for parsing the body.
-	* `WRITE_ONLY`: it will only be used when representing the entity.
-	* `READ_WRITE`: it will be used in both cases.
-
+* `schemaURL`: Lets you configure the schema used. 
+* `mode`: Lets you set when the field is used. The type interface converts the object to a supported format and parses the body in a request. Some fields, however, only function in one such task. These `mode` property values let you choose when the field is used:
+	* `READ_ONLY`: Used only for parsing the body.
+	* `WRITE_ONLY`: Used only for representing the entity.
+	* `READ_WRITE`: Used in both cases.
 	
-You have to add this `Field` annotations to all the fields you want to expose/parse, but there is more to come. A set of annotations that needs to be added together with `Field` can be used to add more functionalities.
-
+You must add the `@Field` annotation to all the fields you want to expose/parse. Additional annotations, explained in the next sections, can be used together with `@Field` to add more functionality. 
 
 ### LinkedModel
 
-If you want your resource to be linked to another model, you'll have to add the `@LinkedModel` annotation. The annotation must indicate which class is the class you are linking to, and the method should return the `id` that identifies that model.
+To link your resource to another model, add the `@LinkedModel` annotation. This annotation must indicate the class you're linking to. The method must return the `id` that identifies that model. The `getCreatorId` method in this example returns the creator's ID. Since the creator is a person, `Person.class` is used for the `@LinkedModel` annotation: 
 
 ```java
 @Field("creator")
@@ -121,7 +105,7 @@ public Long getCreatorId()
 
 ### RelatedCollection
 
-The same as with `@LinkedModel`, if you want to add a link to a collection, you will have to add the `@RelatedCollection` annotation, including the class of the resource you want to link.
+To link your resource to a collection, add the `@RelatedCollection` annotation. This annotation must indicate the class of the resource you're linking to. The method must return the `id` that identifies that model. The `getCommentParentId` method in this example returns a comment's parent ID. Since this identifies a comment, `Comment.class` is used for the `@RelatedCollection` annotation:
 
 ```java
 @Field("comment")
@@ -131,7 +115,7 @@ public Long getCommentParentId()
 
 ### RelativeURL
 
-If your resource has associated relative URLs, you can add this annotation and Apio will append the URL to the URL of your server. e.g. `/images/11312` will be converted to `http://your-server.com/images/11312`
+If your resource contains relative URLs, adding the `@RelativeURL` annotation to methods that return URLs causes Apio to construct absolute URLs by appending the relative URL to your server's URL (e.g., `/images/11312` will be converted to `http://your-server.com/images/11312`). For example, this `getImageURL` method is annotated with `@RelativeURL`:
 
 ```java
 @Field("image")
@@ -139,12 +123,10 @@ If your resource has associated relative URLs, you can add this annotation and A
 public String getImageURL()
 ```
 
-Some URLs of your resource may be relative to the JAX-RS Application, for this cases you can set the property `fromApplication` to true.
+Note that some URLs of your resource may be relative to the JAX-RS application. For these cases, set the property `fromApplication` to `true` (e.g., `/other-service/11312` will be converted to `http://your-server.com/api/other-service/11312`): 
 
 ```java
 @Field("image")
 @RelativeURL(fromApplication = true)
 public String getImageURL()
 ```
-
-e.g. `/other-service/11312` will be converted to `http://your-server.com/api/other-service/11312`
