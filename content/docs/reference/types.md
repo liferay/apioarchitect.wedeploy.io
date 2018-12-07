@@ -9,7 +9,7 @@ Creating the transfer object makes these features available:
 
 * Serialization of your entities in all supported formats
 * Deserialization for creating/updating actions
-* Type documentation: Apio will track all your types and generate documentation in OpenAPI or Hydra. 
+* Creation of type documentation: Apio tracks all your types and generates documentation in OpenAPI or Hydra. 
 
 First, you must create an annotated interface that extends the `Identifier` interface parameterized with the type. This tells Apio which type class identifies the resource. In this example, the type is `Long`: 
 
@@ -52,7 +52,7 @@ The sections that follow describe each annotation.
 
 ## Type
 
-The `@Type` annotation defines an interface as a type. Its value defines the type's name. For example, the value here is `BlogPosting`:
+The `@Type` annotation defines an interface as a type. The annotation's value defines the type's name. For example, the value here is `BlogPosting`:
 
 ```
 @Type("BlogPosting")
@@ -74,7 +74,7 @@ public Long getId()
 
 ## Field
 
-Each method that returns a field in the responses must be annotated with the `@Field` annotation. This annotation must also contain the field's name as you want it to appear in the responses. By including a `Locale` argument in these methods, Apio makes the field localizable. Apio also parses the return type for use in the API documentation. 
+Each method that returns a field in the API responses must be annotated with the `@Field` annotation. You must add the `@Field` annotation to all the fields you want to expose/parse. This annotation must also contain the field's name as you want it to appear in the responses. Including a `Locale` argument in these methods makes their fields localizable. Apio also parses the return type for use in the API documentation. 
 
 For example, this `getArticleBody` method is annotated with `@Field("articleBody")` and takes a `Locale` argument:
 
@@ -87,15 +87,15 @@ The `@Field` annotation contains these additional properties:
 
 * `schemaURL`: Lets you configure the schema used. 
 * `mode`: Lets you set when the field is used. The type interface converts the object to a supported format and parses the body in a request. Some fields, however, only function in one such task. These `mode` property values let you choose when the field is used:
-	* `READ_ONLY`: Used only for parsing the body.
-	* `WRITE_ONLY`: Used only for representing the entity.
-	* `READ_WRITE`: Used in both cases.
-	
-You must add the `@Field` annotation to all the fields you want to expose/parse. Additional annotations, explained in the next sections, can be used together with `@Field` to add more functionality. 
+	* `READ_ONLY`: The field is used only for parsing the body.
+	* `WRITE_ONLY`: The field is used only for representing the entity.
+	* `READ_WRITE`: The field is used in both cases.
+
+Additional annotations, explained in the next sections, can be used together with `@Field` to add more functionality. 
 
 ### LinkedModel
 
-To link your resource to another model, add the `@LinkedModel` annotation. This annotation must indicate the class you're linking to. The method must return the `id` that identifies that model. The `getCreatorId` method in this example returns the creator's ID. Since the creator is a person, `Person.class` is used for the `@LinkedModel` annotation: 
+To link your resource to another model, add the `@LinkedModel` annotation. This annotation must indicate the class you're linking to. Also, the method must return the ID that identifies that model. For example, this `getCreatorId` method returns the creator's ID. And since the creator is a person, `Person.class` is used for the `@LinkedModel` annotation: 
 
 ```java
 @Field("creator")
@@ -105,7 +105,7 @@ public Long getCreatorId()
 
 ### RelatedCollection
 
-To link your resource to a collection, add the `@RelatedCollection` annotation. This annotation must indicate the class of the resource you're linking to. The method must return the `id` that identifies that model. The `getCommentParentId` method in this example returns a comment's parent ID. Since this identifies a comment, `Comment.class` is used for the `@RelatedCollection` annotation:
+To link your resource to a collection, add the `@RelatedCollection` annotation. This annotation must indicate the class of the resource you're linking to. Also, the method must return the ID that identifies that model. For example, this `getCommentParentId` method returns a comment's parent ID. And since this identifies a comment, `Comment.class` is used for the `@RelatedCollection` annotation:
 
 ```java
 @Field("comment")
