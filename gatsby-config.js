@@ -32,6 +32,9 @@ module.exports = {
 				extensions: ['.mdx', '.md'],
 				gatsbyRemarkPlugins: [
 					{
+						resolve: path.resolve(__dirname, './plugins/gatsby-code-label-extractor'),
+					},
+					{
 						resolve: path.resolve(__dirname, './plugins/gatsby-remark-foreach-icons'),
 					},
 					{
@@ -41,10 +44,10 @@ module.exports = {
 						},
 					},
 					{
-						resolve: path.resolve(__dirname, './plugins/gatsby-remark-use-clipboard'),
+						resolve: path.resolve(__dirname, './plugins/gatsby-remark-api-table'),
 					},
 					{
-						resolve: path.resolve(__dirname, './plugins/gatsby-remark-api-table'),
+						resolve: path.resolve(__dirname, './plugins/gatsby-remark-use-clipboard'),
 					},
 				],
 			},
