@@ -1,5 +1,5 @@
 ---
-title: "Discoverability/Navigation"
+title: "Discoverability"
 weight: 9
 ---
 
