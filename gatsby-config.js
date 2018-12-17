@@ -32,7 +32,7 @@ module.exports = {
 				extensions: ['.mdx', '.md'],
 				gatsbyRemarkPlugins: [
 					{
-						resolve: path.resolve(__dirname, './plugins/gatsby-code-label-extractor'),
+						resolve: path.resolve(__dirname, './plugins/gatsby-remark-code-label-extractor'),
 					},
 					{
 						resolve: path.resolve(__dirname, './plugins/gatsby-remark-foreach-icons'),
