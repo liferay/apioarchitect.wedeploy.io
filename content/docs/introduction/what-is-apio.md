@@ -3,7 +3,7 @@ title: "What is APIO"
 weight: 7
 ---
 
-Apo Architect is a server-side library that facilitates the creation of Apio REST APIs. It's also opinionated to reduce the amount of code API developers have to write. This is also achieved by out-of-the-box implementations of well known patterns in REST APIs, such as the Collection Pattern.
+Apio Architect is a server-side library that facilitates the creation of Apio REST APIs. It's also opinionated to reduce the amount of code API developers have to write. This is also achieved by out-of-the-box implementations of well known patterns in REST APIs, such as the Collection Pattern.
 
 Two key techniques make this possible:
 
