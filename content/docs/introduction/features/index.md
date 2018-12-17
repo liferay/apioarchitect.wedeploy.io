@@ -1,8 +1,6 @@
 ---
-layout: "redirect"
----
 title: "Features"
-weight: 8
+weight: 5
 ---
 
 Fill
