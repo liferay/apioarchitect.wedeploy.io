@@ -7,24 +7,29 @@ Together with [providers](/docs/reference/providers.html), **exception mappers**
 
 Exception mappers allow you to automatically convert an exception of your domain like `NoSuchUserException` or `NotAuthenticatedException` into HTTP domain exceptions, with its related status code.
 
-Creating an exception mapper requires implementing the `ExceptionMapper` interface, that has a generic parameter to indicate the exception type. This interface has a sole method `map` which receives the exception and returns an `APIError`. APIO Architect will use the `APIError` instance to serialize the response in the correspondent format.
+Creating an exception mapper requires implementing the `ExceptionMapper` interface, that has a generic parameter to indicate the exception type and exposing it as an OSGi `Component`. This interface has a sole method `map` which receives the exception and returns an `APIError`. APIO Architect will use the `APIError` instance to serialize the response in the correspondent format.
 
-A simple example would be like this:
-
-A simple example would be like this:
-
+A simple example would be:
 
 ```java
-public class NotFoundExceptionMapper implements ExceptionMapper<NoSuchModelException> {
-	
-	@Override
-	public APIError map(NoSuchMethodException exception) {
-		return new APIError(exception, "Not Found", "not-found", 404);
-	}
+import com.liferay.apio.architect.error.APIError;
+import com.liferay.apio.architect.exception.mapper.ExceptionMapper;
+import org.osgi.service.component.annotations.Component;
+
+import javax.ws.rs.NotFoundException;
+
+@Component
+public class NotFoundExceptionMapper implements ExceptionMapper<NotFoundException> {
+
+  @Override
+  public APIError map(NotFoundException exception) {
+    return new APIError(exception, "Not Found", "not-found", 404);
+  }
+
 }
 ```
 
-Now, everytime one of your [actions](/docs/reference/actions.html) throw a `NoSuchModelException` APIO Architect will convert your exception using the previously built mapper and will return a nicely formatted response:
+Now, everytime one of your [actions](/docs/reference/actions.html) throw a `NotFoundException` APIO Architect will convert your exception using the previously built mapper and will return a nicely formatted response:
 
 ```json json
 {
