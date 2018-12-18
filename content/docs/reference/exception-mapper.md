@@ -1,15 +1,13 @@
 ---
-title: "Exception mappers"
+title: "Exception Mappers"
 weight: 3
 ---
 
-Together with [providers](/docs/reference/providers.html), **exception mappers** are a way to override the APIO Architect runtime.
+Together with [providers](/docs/reference/providers.html), exception mappers are a way to override the Apio Architect runtime. Exception mappers let you automatically convert an exception of your domain (e.g., `NoSuchUserException` or `NotAuthenticatedException`) into an HTTP-domain exception with the related status code. 
 
-Exception mappers allow you to automatically convert an exception of your domain like `NoSuchUserException` or `NotAuthenticatedException` into HTTP domain exceptions, with its related status code.
+To create an exception mapper, implement the `ExceptionMapper` interface and expose the class as an OSGi component. This interface has a generic parameter for the exception type, and a single method (`map`) that receives the exception and returns an `APIError`. Apio Architect uses the `APIError` to serialize the response in the corresponding format.
 
-Creating an exception mapper requires implementing the `ExceptionMapper` interface, that has a generic parameter to indicate the exception type and exposing it as an OSGi `Component`. This interface has a sole method `map` which receives the exception and returns an `APIError`. APIO Architect will use the `APIError` instance to serialize the response in the correspondent format.
-
-A simple example would be:
+Here's an example exception mapper for `NotFoundException`: 
 
 ```java
 import com.liferay.apio.architect.error.APIError;
@@ -29,7 +27,7 @@ public class NotFoundExceptionMapper implements ExceptionMapper<NotFoundExceptio
 }
 ```
 
-Now, everytime one of your [actions](/docs/reference/actions.html) throw a `NotFoundException` APIO Architect will convert your exception using the previously built mapper and will return a nicely formatted response:
+With this exception mapper, each time an [action](/docs/reference/actions.html) throws a `NotFoundException`, Apio Architect converts it and returns a nicely formatted response:
 
 ```json json
 {
