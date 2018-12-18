@@ -1,6 +1,6 @@
 ---
 title: "Shared vocabularies"
-weight: 6
+weight: 100
 ---
 
 Fill
