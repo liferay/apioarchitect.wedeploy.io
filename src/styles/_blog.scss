@@ -2,6 +2,14 @@
     max-width: 34rem;
 }
 
+.blog-main .link-primary:hover {
+    color: inherit !important;
+}
+
+.blog-main .card-body {
+    padding-bottom: 2rem;
+}
+
 .social {
     text-align: center;
     margin-top: 96px;
