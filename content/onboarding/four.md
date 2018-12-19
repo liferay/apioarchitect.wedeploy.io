@@ -14,6 +14,16 @@ dependencies {
 }
 ```
 
+```kotlin
+//highlight-range{4}
+dependencies {
+    implementation(kotlin("stdlib"))
+    implementation(kotlin("osgi-bundle"))
+    implementation("org.osgi:org.osgi.service.component.annotations:1.3.0")
+    implementation("com.liferay:com.liferay.apio.architect.api:2.0.0-20181212.154022-16")
+}
+```
+
 Afterwards, annotate your `ActionRouter`:
 
 ```java
@@ -48,6 +58,28 @@ public class PersonActionRouter implements ActionRouter<Person> {
 }
 ```
 
+```kotlin
+//highlight-range{7,9}
+package apio.architect.example
+
+import com.liferay.apio.architect.router.ActionRouter
+import com.liferay.apio.architect.annotation.Actions.Retrieve
+import com.liferay.apio.architect.annotation.EntryPoint
+import com.liferay.apio.architect.annotation.Id
+import org.osgi.service.component.annotations.Component
+
+@Component
+class PersonActionRouter : ActionRouter<Person> {
+
+    @EntryPoint @Retrieve
+    fun getPersons() = listOf(Person.of(1, "Alex", "Developer"), Person.of(2, "David", "Developer"))
+
+    @Retrieve
+    fun getPerson(@Id personId: Long) = Person.of(1, "Alex", "Developer")
+
+}
+```
+
 With that you will expose `PersonActionRouter` as an `ActionRouter` to the OSGi machinery. Then, you need to convert your generated `jar` to an OSGi bundle. Achieving this is as simple as adding the `bndtools` Gradle plugin:
 
 ```groovy
@@ -55,6 +87,15 @@ With that you will expose `PersonActionRouter` as an `ActionRouter` to the OSGi 
 plugins {
     id 'java'
     id 'biz.aQute.bnd.builder' version '4.1.0'
+}
+```
+
+```kotlin
+//highlight-range{4}
+plugins {
+    java
+    kotlin("jvm") version "1.3.10"
+    id("biz.aQute.bnd.builder").version("4.1.0")
 }
 ```
 

@@ -14,6 +14,14 @@ import com.liferay.apio.architect.router.ActionRouter;
 public class PersonActionRouter implements ActionRouter<Person> { }
 ```
 
+```kotlin
+package apio.architect.example
+
+import com.liferay.apio.architect.router.ActionRouter
+
+class PersonActionRouter : ActionRouter<Person>
+```
+
 Then, you can create your first endpoint, that will serve a list of all the persons in your API:
 
 ```java
@@ -36,6 +44,24 @@ public class PersonActionRouter implements ActionRouter<Person> {
             Person.of(1, "Alex", "Developer"),
             Person.of(2, "David", "Developer"));
     }
+
+}
+```
+
+```kotlin
+//highlight-range{9-10}
+package apio.architect.example
+
+import com.liferay.apio.architect.router.ActionRouter
+import com.liferay.apio.architect.annotation.Actions.Retrieve
+import com.liferay.apio.architect.annotation.EntryPoint
+
+class PersonActionRouter : ActionRouter<Person> {
+
+    @EntryPoint @Retrieve
+    fun getPersons() = listOf(
+        Person.of(1, "Alex", "Developer"), 
+        Person.of(2, "David", "Developer"))
 
 }
 ```
@@ -70,6 +96,29 @@ public class PersonActionRouter implements ActionRouter<Person> {
     public Person getPerson(@Id long personId) {
         return Person.of(1, "Alex", "Developer");
     }
+
+}
+```
+
+```kotlin
+//highlight-range{13-14}
+package apio.architect.example
+
+import com.liferay.apio.architect.router.ActionRouter
+import com.liferay.apio.architect.annotation.Actions.Retrieve
+import com.liferay.apio.architect.annotation.EntryPoint
+import com.liferay.apio.architect.annotation.Id
+
+class PersonActionRouter : ActionRouter<Person> {
+
+    @EntryPoint @Retrieve
+    fun getPersons() = listOf(
+        Person.of(1, "Alex", "Developer"), 
+        Person.of(2, "David", "Developer"))
+
+    @Retrieve
+    fun getPerson(@Id personId: Long) = 
+        Person.of(1, "Alex", "Developer")
 
 }
 ```

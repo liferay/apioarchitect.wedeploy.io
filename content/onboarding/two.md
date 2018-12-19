@@ -29,6 +29,23 @@ public interface Person extends Identifier<Long> {
 }
 ```
 
+```kotlin
+@Type("Person")
+interface Person : Identifier<Long> {
+
+    @get:Field("name")
+    val name: String
+
+    @get:Field("jobTitle")
+    val jobTitle: String
+
+    @get:Id
+    val id: Long
+
+    companion object
+}
+```
+
 With this, you are ready to expose persons in your API, containing their `Id` as a `Long` value, their name and their job title.
 
 Also, provide an utility method in your `Person` interface for easily create new persons (this method will be used in the following step):
@@ -51,5 +68,15 @@ static Person of(int id, String name, String jobTitle) {
             return id;
         }
     };
+}
+```
+
+```kotlin
+fun Person.Companion.of(id: Long, name: String, jobTitle: String) = object : Person {
+    override val name: String = name
+
+    override val jobTitle: String = jobTitle
+
+    override val id: Long = id
 }
 ```

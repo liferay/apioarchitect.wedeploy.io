@@ -31,6 +31,23 @@ public class CredentialsProvider implements Provider<Credentials> {
 }
 ```
 
+```kotlin
+package apio.architect.example
+
+import com.liferay.apio.architect.credentials.Credentials
+import com.liferay.apio.architect.provider.Provider
+import org.osgi.service.component.annotations.Component
+
+import javax.servlet.http.HttpServletRequest
+
+@Component
+class CredentialsProvider : Provider<Credentials> {
+
+    override fun createContext(httpServletRequest: HttpServletRequest) = Credentials { "" }
+
+}
+```
+
 For this class to compile, you need to add `javax.servlet` dependency to your project's `build.gradle` `dependencies` block:
 
 ```groovy
@@ -39,6 +56,17 @@ dependencies {
     implementation group: "com.liferay", name: "com.liferay.apio.architect.api", version: "2.0.0-20181212.154022-16"
     implementation group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"
     implementation group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
+}
+```
+
+```kotlin
+//highlight-range{4}
+dependencies {
+    implementation(kotlin("stdlib"))
+    implementation(kotlin("osgi-bundle"))
+    implementation("javax.servlet:javax.servlet-api:3.0.1")
+    implementation("org.osgi:org.osgi.service.component.annotations:1.3.0")
+    implementation("com.liferay:com.liferay.apio.architect.api:2.0.0-20181212.154022-16")
 }
 ```
 
@@ -53,6 +81,17 @@ buildscript {
     }
     dependencies {
         classpath 'biz.aQute.bnd:biz.aQute.bnd.gradle:4.1.0'
+    }
+}
+```
+
+```kotlin
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("biz.aQute.bnd:biz.aQute.bnd.gradle:4.1.0")
     }
 }
 ```
@@ -73,6 +112,26 @@ task run(type: Bndrun) {
     dependsOn resolve
 
     bndrun 'example.bndrun'
+}
+```
+
+```kotlin
+// These two imports should be placed at the beginning of 
+// your `build.gradle` file
+import aQute.bnd.gradle.Bndrun
+import aQute.bnd.gradle.Resolve
+
+tasks {
+
+    val resolve by registering(Resolve::class) {
+        setBndrun("example.bndrun")
+    }
+    
+    val run by registering(Bndrun::class) {
+        dependsOn(resolve)
+        setBndrun("example.bndrun")
+    }
+    
 }
 ```
 
@@ -114,6 +173,29 @@ dependencies {
     runtime group: "org.apache.felix", name: "org.apache.felix.scr", version: "2.0.8"
     runtime group: "org.eclipse.platform", name: "org.eclipse.osgi", version: "3.13.0"
     runtime group: "org.osgi", name: "org.osgi.service.cm", version: "1.5.0"
+}
+```
+
+```kotlin
+//highlight-range{8-18}
+dependencies {
+    implementation(kotlin("stdlib"))
+    implementation(kotlin("osgi-bundle"))
+    implementation("javax.servlet:javax.servlet-api:3.0.1")
+    implementation("org.osgi:org.osgi.service.component.annotations:1.3.0")
+    implementation("com.liferay:com.liferay.apio.architect.api:2.0.0-20181212.154022-16")
+
+    runtime("ch.qos.logback:logback-classic:1.2.3")
+    runtime("com.liferay:com.liferay.apio.architect.exception.mapper.impl:2.0.0-20181212.154037-7")
+    runtime("com.liferay:com.liferay.apio.architect.impl:2.0.0-20181212.154108-25")
+    runtime("com.liferay:com.liferay.apio.architect.uri.mapper.impl:2.0.0-20181212.154207-5")
+    runtime("io.vavr:vavr:0.9.2")
+    runtime("org.apache.aries.jax.rs:org.apache.aries.jax.rs.whiteboard:1.0.1")
+    runtime("org.apache.felix:org.apache.felix.eventadmin:1.4.8")
+    runtime("org.apache.felix:org.apache.felix.http.jetty:3.4.0")
+    runtime("org.apache.felix:org.apache.felix.scr:2.0.8")
+    runtime("org.eclipse.platform:org.eclipse.osgi:3.13.0")
+    runtime("org.osgi:org.osgi.service.cm:1.5.0")
 }
 ```
 
