@@ -2,7 +2,24 @@ body {
 	background-color: $bg-color;
 	font-size: 1rem;
 
-	.bg-primary {
+	.bg-primary, .btn-primary {
+		background-color: $primary-color !important;
+	}
+
+	.btn-primary {
+		border-color: $primary-color !important;
+	}
+
+	.btn-primary:hover,.btn-primary:focus {
+		background-color: $accent-color !important;
+		border-color: $accent-color !important;
+	}
+
+	.link-primary {
+		color: $primary-color;
+	}
+
+	.multi-step-item.active .multi-step-icon {
 		background-color: $primary-color;
 	}
 
