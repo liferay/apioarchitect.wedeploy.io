@@ -2,6 +2,7 @@
 title: Preparing the environment
 description: Initializing a new Java Gradle project
 stepNumber: 1
+short: Setup
 ---
 
 First, you must initialize a Java gradle project the way you prefer, for example by using the `gradle init` command:

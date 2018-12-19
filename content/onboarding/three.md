@@ -2,6 +2,7 @@
 title: Creating an action router
 description: Implementing our first endpoints
 stepNumber: 3
+short: Router
 ---
 
 First, you must create a class `PersonActionRouter` in `src/main/java/apio/architect/example` that implements `ActionRouter`. And provide `Person` as its generic param:

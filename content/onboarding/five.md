@@ -2,6 +2,7 @@
 title: Finalising the environment
 description: Generating an OSGi container
 stepNumber: 5
+short: Build
 ---
 
 <!---

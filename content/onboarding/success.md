@@ -2,6 +2,7 @@
 title: Running the example
 description: Run the OSGi container
 stepNumber: 6
+short: Run
 ---
 
 Now you are ready to run your example. Just execute the following command from your project's root directory:

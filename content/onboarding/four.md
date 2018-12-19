@@ -2,6 +2,7 @@
 title: Generating an OSGi bundle
 description: Using Bndtools
 stepNumber: 4
+short: Bundle
 ---
 
 You need to annotate your newly created `ActionRouter` with `@Component` annotation. For that, first, add the OSGi annotations dependency to your `build.gradle`'s `dependencies` block:

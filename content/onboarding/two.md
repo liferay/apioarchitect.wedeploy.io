@@ -2,6 +2,7 @@
 title: Creating a resource's type
 description: Starting our contract
 stepNumber: 2
+short: Type
 ---
 
 Let's create a `Person` interface inside `src/main/java/apio/architect/example` representing a resource. For example, you could create something like this for representing persons:
