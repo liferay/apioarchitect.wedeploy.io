@@ -79,7 +79,7 @@ export default (props) => (
 		`}
 		render={data => {
 
-			const logoPath = "/images/logo.png";
+			const logoPath = "/images/logos/apio_architect.png";
 
 			return (
 				<>

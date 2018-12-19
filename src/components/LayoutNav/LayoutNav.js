@@ -52,12 +52,15 @@ class LayoutNav extends Component {
             <nav ref="navElement" className={styles}>
                 <div className="container-fluid container-fluid-max-lg">
                     <Link to="/" className="navbar-brand">
-                        <img className="logo mr-2" src="/images/logo.png" alt="" />
+                        <img className="logo mr-2" src="/images/logos/apio_architect.png" alt="" />
                         <span className="title align-middle">{process.env.PROJECT_NAME}</span>
                     </Link>
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
                             <Link className="nav-link ml-3" to="/docs/">Docs</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link ml-3" to="/blog/">Blog</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link ml-3" to="/onboarding/">Onboarding</Link>

@@ -32,7 +32,7 @@ export default class Blog extends Component {
                         <meta name="description" content={excerpt} />
                         <meta name="og:description" content={excerpt} />
                         <meta name="twitter:description" content={excerpt} />
-                        <meta name="og:title" content="Blog Template" />
+                        <meta name="og:title" content={title} />
                         <meta name="og:type" content="article" />
                         <meta name="twitter.label1" content="Reading time" />
                         <meta
@@ -48,8 +48,8 @@ export default class Blog extends Component {
                                     <div className="row">
                                         <div className="intro blog-intro text-center col">
                                             <div className="container-fluid container-fluid-max-lg">
-                                                <h1 className="h1">Blog Template</h1>
-                                                <h2 className="h3">Where good ideas come from</h2>
+                                                <h1 className="h1">Blog</h1>
+                                                <h2 className="h3">Read our latest stories</h2>
                                             </div>
                                         </div>
                                     </div>

@@ -27,19 +27,17 @@ class Navigation extends Component {
 
     renderNavigationItems() {
         const { sectionList, location, depth = 0 } = this.props;
-        
+
         return sectionList.map((section, index) => {
-            
             let style = classNames({
                 'active': this._isActive(section) === true,
                 'nav-heading': section.items
             });
 
             return(
-    
                 <li key={index} ref={`navItem${index}${depth}`} className={style} onClick={this._handleOnClick.bind(this, index, depth, section)}>
                     <Anchor page={section} />
-                    
+
                     {section.items && (
                         <Navigation sectionList={section.items} location={location} depth={depth + 1} />
                     )}
