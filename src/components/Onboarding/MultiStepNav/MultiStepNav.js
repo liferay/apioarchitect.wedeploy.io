@@ -53,7 +53,7 @@ export default (props) => (
 
 const handleSuccessPage_ = (slug, stepNumber) => {
     if (slug.endsWith('success.html')) {
-        return 'Success Page';
+        return 'Final Step';
     }
     return `Step ${stepNumber}`;
 }
