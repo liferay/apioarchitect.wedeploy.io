@@ -65,7 +65,7 @@ module.exports = {
 				short_name: 'Gatsby Boilerplate',
 				start_url: '/',
 				background_color: '#FFFFFF',
-				theme_color: '#0B5FFF',
+				theme_color: '#3E4F5C',
 				display: 'minimal-ui',
 				icons: [
 					{
