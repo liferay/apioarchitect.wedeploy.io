@@ -10,6 +10,17 @@
     padding-bottom: 2rem;
 }
 
+blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+}
+
+blockquote p {
+    display: inline;
+}
+
 .social {
     text-align: center;
     margin-top: 96px;
