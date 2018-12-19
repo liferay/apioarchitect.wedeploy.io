@@ -9,9 +9,9 @@ Creating the transfer object makes these features available:
 
 * Serialization of your entities in all supported formats
 * Deserialization for creating/updating actions
-* Creation of type documentation: Apio tracks all your types and generates documentation in OpenAPI or Hydra. 
+* Creation of type documentation: Apio Architect tracks all your types and generates documentation in OpenAPI or Hydra. 
 
-First, you must create an annotated interface that extends the `Identifier` interface parameterized with the type. This tells Apio which type class identifies the resource. In this example, the type is `Long`: 
+First, you must create an annotated interface that extends the `Identifier` interface parameterized with the type. This tells Apio Architect which type class identifies the resource. In this example, the type is `Long`: 
 
 ```java
 @Type("BlogPosting")
@@ -115,7 +115,7 @@ public Long getCommentParentId()
 
 ### RelativeURL
 
-If your resource contains relative URLs, adding the `@RelativeURL` annotation to methods that return URLs causes Apio to construct absolute URLs by appending the relative URL to your server's URL (e.g., `/images/11312` will be converted to `http://your-server.com/images/11312`). For example, this `getImageURL` method is annotated with `@RelativeURL`:
+If your resource contains relative URLs, adding the `@RelativeURL` annotation to methods that return URLs causes Apio Architect to construct absolute URLs by appending the relative URL to your server's URL (e.g., `/images/11312` will be converted to `http://your-server.com/images/11312`). For example, this `getImageURL` method is annotated with `@RelativeURL`:
 
 ```java
 @Field("image")

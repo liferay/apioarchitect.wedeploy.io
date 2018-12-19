@@ -19,7 +19,7 @@ class Index extends Component {
     }
 
     render() {
-        const description = "Start using APIO Architect for making powerful APIs 💖";
+        const description = `Start using ${process.env.PROJECT_NAME} for making powerful APIs 💖`;
 
         return (
             <div className="home">
