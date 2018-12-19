@@ -1,5 +1,5 @@
 ---
-title: "Why should I use APIO"
+title: "Why should I use Apio Architect"
 weight: 7
 ---
 
@@ -13,4 +13,4 @@ As an API developer, you must develop your API's core functionality. For example
 -   Supporting one or more hypermedia formats (e.g., HAL, JSON-LD, Siren, etc.)
 -   And more...
 
-APIO helps you with these tasks by automatically handling the request and formatting the response. This lets you focus on implementing your endpoints. 
+Apio Architect helps you with these tasks by automatically handling the request and formatting the response. This lets you focus on implementing your endpoints. 
