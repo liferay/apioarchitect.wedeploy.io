@@ -51,7 +51,7 @@ interface Person : Identifier<Long> {
 
 With this, you are ready to expose persons in your API, containing their `Id` as a `Long` value, their name and their job title.
 
-Also, it will be useful to provide an utility method in your `Person` interface to create new persons easily (we will use this method in the following step):
+In our case, to keep things simple, we will add an static utility method in your `Person` interface to create new persons easily (we will use this method in the following step). In a more real code, you will probably have a separate class with the actual implementation, but for now let's keep it simple:
 
 ```java
 static Person of(int id, String name, String jobTitle) {
