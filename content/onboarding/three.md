@@ -5,7 +5,9 @@ stepNumber: 3
 short: Router
 ---
 
-First, you must create a class `PersonActionRouter` in `src/main/java/apio/architect/example` that implements `ActionRouter`. And provide `Person` as its generic param:
+Once that we have our `@Type` defined, we will create the Router, which is the Apio Architect component that representing the mapping to the endpoint implementation.
+
+In order to do so, you must create a class `PersonActionRouter` in `src/main/java/apio/architect/example` that implements `ActionRouter`. And provide `Person` as its generic param to specify the Type that the Router is related to:
 
 ```java
 package apio.architect.example;
@@ -67,7 +69,7 @@ class PersonActionRouter : ActionRouter<Person> {
 }
 ```
 
-As you can see, this endpoint must be annotated with both `@Retrieve` and `@EntryPoint`. The first one indicates that this method contains the logic for retrieving a list of persons, while the latter informs Apio Architect that this is a root endpoint. This endpoint will be served in `your_server_url/api/person`.
+As you can see, this endpoint must be annotated with both `@Retrieve` and `@EntryPoint`. The first one indicates that this method contains the logic for retrieving a list of persons, while the latter informs Apio Architect that this is a root endpoint.  With this information Apio Architect will map the endpoint to the `your_server_url/api/person` URL.
 
 Similarly, you can create an endpoint for retrieving a person with a specific ID, that will respond to a request like `your_server_url/api/person/{id}`. For this, you just need to create a new method that must receive a `long` value, and return a `Person`. Then annotate the method with `@Retrieve` (like the previous one) and annotate its parameter with `@Id`:
 
