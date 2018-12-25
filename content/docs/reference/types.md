@@ -74,7 +74,7 @@ public Long getId()
 
 ## Field
 
-Each method that returns a field in the API responses must be annotated with the `@Field` annotation. You must add the `@Field` annotation to all the fields you want to expose/parse. This annotation must also contain the field's name as you want it to appear in the responses. Including a `Locale` argument in these methods makes their fields localizable. Apio also parses the return type for use in the API documentation. 
+Each method that returns a field in the API responses must be annotated with the `@Field` annotation. You must add the `@Field` annotation to all the fields you want to expose/parse. This annotation must also contain the field's name as you want it to appear in the responses. Including a `Locale` argument in these methods makes their fields localizable. Apio Architect also parses the return type for use in the API documentation. 
 
 For example, this `getArticleBody` method is annotated with `@Field("articleBody")` and takes a `Locale` argument:
 

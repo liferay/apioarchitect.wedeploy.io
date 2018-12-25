@@ -1,10 +1,9 @@
 ---
 mainPage: true
 title: Getting Started
-description: Some steps to start development using Gatsby
+description: Some steps to start development using Apio Architect
 ---
 
-Welcome to Getting Started guide of Gatsby Boilerplate
-=======================
+# Are you ready to take your API to the next level?
 
-Click on Get Started button to start the guide!
+Click on _Get Started_ button to start the guide!
