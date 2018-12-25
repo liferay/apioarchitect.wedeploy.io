@@ -5,7 +5,9 @@ stepNumber: 2
 short: Type
 ---
 
-Let's create a `Person` interface inside `src/main/java/apio/architect/example` representing a resource. For example, you could create something like this for representing persons:
+When defining an API, we should start by defining the resource model that our API will expose. With Apio Architect we do this by creating an interface and we will use annotations to specify that it is a `@Type`, its `@Field`s and which is its `@Id`.
+
+In our case, let's start defining our `Person` Resource: create a `Person` interface inside `src/main/java/apio/architect/example` with the following contents:
 
 ```java
 package apio.architect.example;
@@ -49,7 +51,7 @@ interface Person : Identifier<Long> {
 
 With this, you are ready to expose persons in your API, containing their `Id` as a `Long` value, their name and their job title.
 
-Also, provide an utility method in your `Person` interface for easily create new persons (this method will be used in the following step):
+In our case, to keep things simple, we will add an static utility method in your `Person` interface to create new persons easily (we will use this method in the following step). In a more real code, you will probably have a separate class with the actual implementation, but for now let's keep it simple:
 
 ```java
 static Person of(int id, String name, String jobTitle) {
