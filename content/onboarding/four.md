@@ -1,11 +1,11 @@
 ---
 title: Generating an OSGi bundle
-description: Using Bndtools
+description: With the endpoint and type created, we will create the OSGi bundle using bndtools
 stepNumber: 4
 short: Bundle
 ---
 
-You need to annotate your newly created `ActionRouter` with `@Component` annotation. For that, first, add the OSGi annotations dependency to your `build.gradle`'s `dependencies` block:
+To create the OSGi bundle, we need to annotate your newly created `ActionRouter` with `@Component` annotation. But first, we need to add the OSGi annotations dependency to the `build.gradle`'s `dependencies` block:
 
 ```groovy
 //highlight-range{3}
@@ -25,7 +25,7 @@ dependencies {
 }
 ```
 
-Afterwards, annotate your `ActionRouter`:
+Afterwards, annotate your `ActionRouter` with `@Compponent`:
 
 ```java
 //highlight-range{7,12}
