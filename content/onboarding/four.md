@@ -100,15 +100,33 @@ plugins {
 }
 ```
 
-And, finally, create a `bnd.bnd` file in your project's root folder with the following content:
+And, finally, update your JAR's `MANIFEST.MF` with the bundle's name, symbolic name and version:
 
-```properties
-Bundle-Name: Apio Architect Example
-Bundle-SymbolicName: apio.architect.example
-Bundle-Version: 1.0.0
+```groovy
+jar {
+    manifest {
+        attributes(
+            "Bundle-Name": "Apio Architect Example",
+            "Bundle-SymbolicName": "apio.architect.example",
+            "Bundle-Version": "1.0.0"
+        )
+    }
+}
 ```
 
-Consequently, everytime you invoke the `jar` task in the project, all the necesary BND properties will be present in your `META-INF/MANIFEST.MF`.
+```kotlin
+tasks.withType<Jar> {
+    manifest {
+        attributes(
+            "Bundle-Name" to "Apio Architect Example",
+            "Bundle-SymbolicName" to "apio.architect.example",
+            "Bundle-Version" to "1.0.0"
+        )
+    }
+}
+```
+
+Consequently, everytime you invoke the `jar` task in the project, all the necessary BND properties will be present in your `META-INF/MANIFEST.MF`.
 
 If you want to try it, execute the following command (after doing a `./gradlew jar`):
 
