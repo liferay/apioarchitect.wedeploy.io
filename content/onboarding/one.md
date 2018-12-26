@@ -7,23 +7,23 @@ short: Setup
 
 First, you must initialize a Java gradle project the way you prefer, for example by using the `gradle init` command:
 
-```bash groovy
+```bash
+# For using Gradle with Groovy scripts
 gradle init --type basic --dsl groovy
-```
 
-```bash kotlin
+# For using Gradle with Kotlin scripts
 gradle init --type basic --dsl kotlin
 ```
 
 Second, you just need to apply the `java` plugin inside the `build.gradle` file:
 
-```groovy
+```groovy gradle
 plugins {
     id 'java'
 }
 ```
 
-```kotlin
+```kotlin kotlin-dsl
 plugins {
     java
     kotlin("jvm") version "1.3.10"
@@ -32,7 +32,7 @@ plugins {
 
 Third, add a `repositories` block to your project's `build.gradle` to use the Liferay Public Snapshots repository:
 
-```groovy
+```groovy gradle
 repositories {
     mavenCentral()
 
@@ -42,7 +42,7 @@ repositories {
 }
 ```
 
-```kotlin
+```kotlin kotlin-dsl
 repositories {
     mavenCentral()
 
@@ -52,13 +52,13 @@ repositories {
 
 Finally, create a `dependencies` block in the project's `build.gradle` and add Apio Architect API dependency:
 
-```groovy
+```groovy gradle
 dependencies {
     implementation group: "com.liferay", name: "com.liferay.apio.architect.api", version: "2.0.0-20181212.154022-16"
 }
 ```
 
-```kotlin
+```kotlin kotlin-dsl
 dependencies {
     // These two dependencies are needed if you want
     // to develop your APIs with Kotlin

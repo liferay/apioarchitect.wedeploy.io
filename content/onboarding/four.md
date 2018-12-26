@@ -7,7 +7,7 @@ short: Bundle
 
 To create the OSGi bundle, we need to annotate your newly created `ActionRouter` with `@Component` annotation. But first, we need to add the OSGi annotations dependency to the `build.gradle`'s `dependencies` block:
 
-```groovy
+```groovy gradle
 //highlight-range{3}
 dependencies {
     implementation group: "com.liferay", name: "com.liferay.apio.architect.api", version: "2.0.0-20181212.154022-16"
@@ -15,7 +15,7 @@ dependencies {
 }
 ```
 
-```kotlin
+```kotlin kotlin-dsl
 //highlight-range{4}
 dependencies {
     implementation(kotlin("stdlib"))
@@ -83,7 +83,7 @@ class PersonActionRouter : ActionRouter<Person> {
 
 With that you will expose `PersonActionRouter` as an `ActionRouter` to the OSGi machinery. Then, you need to convert your generated `jar` to an OSGi bundle. Achieving this is as simple as adding the `bndtools` Gradle plugin:
 
-```groovy
+```groovy gradle
 //highlight-range{3}
 plugins {
     id 'java'
@@ -91,7 +91,7 @@ plugins {
 }
 ```
 
-```kotlin
+```kotlin kotlin-dsl
 //highlight-range{4}
 plugins {
     java
@@ -102,7 +102,7 @@ plugins {
 
 And, finally, update your JAR's `MANIFEST.MF` with the bundle's name, symbolic name and version:
 
-```groovy
+```groovy gradle
 jar {
     manifest {
         attributes(
@@ -114,7 +114,7 @@ jar {
 }
 ```
 
-```kotlin
+```kotlin kotlin-dsl
 tasks.withType<Jar> {
     manifest {
         attributes(

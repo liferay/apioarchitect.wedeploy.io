@@ -52,7 +52,7 @@ public class PersonActionRouter implements ActionRouter<Person> {
 ```
 
 ```kotlin
-//highlight-range{9-10}
+//highlight-range{9-12}
 package apio.architect.example
 
 import com.liferay.apio.architect.router.ActionRouter
@@ -104,7 +104,7 @@ public class PersonActionRouter implements ActionRouter<Person> {
 ```
 
 ```kotlin
-//highlight-range{13-14}
+//highlight-range{15-18}
 package apio.architect.example
 
 import com.liferay.apio.architect.router.ActionRouter
@@ -118,6 +118,7 @@ class PersonActionRouter : ActionRouter<Person> {
     fun getPersons() = listOf(
         Person.of(1, "Alex", "Developer"), 
         Person.of(2, "David", "Developer"))
+
 
     @Retrieve
     fun getPerson(@Id personId: Long) = 

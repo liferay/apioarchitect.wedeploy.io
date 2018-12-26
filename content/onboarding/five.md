@@ -51,7 +51,7 @@ class CredentialsProvider : Provider<Credentials> {
 
 For this class to compile, you need to add `javax.servlet` dependency to your project's `build.gradle` `dependencies` block:
 
-```groovy
+```groovy gradle
 //highlight-range{3}
 dependencies {
     implementation group: "com.liferay", name: "com.liferay.apio.architect.api", version: "2.0.0-20181212.154022-16"
@@ -60,7 +60,7 @@ dependencies {
 }
 ```
 
-```kotlin
+```kotlin kotlin-dsl
 //highlight-range{4}
 dependencies {
     implementation(kotlin("stdlib"))
@@ -75,7 +75,7 @@ Now you are ready to run your example.
 
 First, include the `biz.aQute.bnd.gradle` in your gradle's classpath by adding the following block at the beginning of your `build.gradle` file:
 
-```groovy
+```groovy gradle
 buildscript {
     repositories {
         mavenCentral()
@@ -86,7 +86,7 @@ buildscript {
 }
 ```
 
-```kotlin
+```kotlin kotlin-dsl
 buildscript {
     repositories {
         mavenCentral()
@@ -99,7 +99,7 @@ buildscript {
 
 Then, add the following tasks to your `build.gradle` file:
 
-```groovy
+```groovy gradle
 // These two imports should be placed at the beginning of 
 // your `build.gradle` file
 import aQute.bnd.gradle.Bndrun
@@ -116,7 +116,7 @@ task run(type: Bndrun) {
 }
 ```
 
-```kotlin
+```kotlin kotlin-dsl
 // These two imports should be placed at the beginning of 
 // your `build.gradle` file
 import aQute.bnd.gradle.Bndrun
@@ -156,7 +156,7 @@ Last thing is to instruct gradle how to run an OSGi container with both Apio Arc
 
 And add all the `runtime` dependencies to your project's `build.gradle` `dependencies` block:
 
-```groovy
+```groovy gradle
 //highlight-range{6-16}
 dependencies {
     implementation group: "com.liferay", name: "com.liferay.apio.architect.api", version: "2.0.0-20181212.154022-16"
@@ -177,7 +177,7 @@ dependencies {
 }
 ```
 
-```kotlin
+```kotlin kotlin-dsl
 //highlight-range{8-18}
 dependencies {
     implementation(kotlin("stdlib"))
