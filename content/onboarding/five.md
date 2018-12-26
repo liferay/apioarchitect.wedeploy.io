@@ -100,16 +100,11 @@ buildscript {
 Then, add the following tasks to your `build.gradle` file:
 
 ```groovy gradle
-// These two imports should be placed at the beginning of 
-// your `build.gradle` file
-import aQute.bnd.gradle.Bndrun
-import aQute.bnd.gradle.Resolve
-
-task resolve(type: Resolve) {
+task resolve(type: aQute.bnd.gradle.Resolve) {
     bndrun 'example.bndrun'
 }
 
-task run(type: Bndrun) {
+task run(type: aQute.bnd.gradle.Bndrun) {
     dependsOn resolve
 
     bndrun 'example.bndrun'
@@ -117,18 +112,13 @@ task run(type: Bndrun) {
 ```
 
 ```kotlin kotlin-dsl
-// These two imports should be placed at the beginning of 
-// your `build.gradle` file
-import aQute.bnd.gradle.Bndrun
-import aQute.bnd.gradle.Resolve
-
 tasks {
 
-    val resolve by registering(Resolve::class) {
+    val resolve by registering(aQute.bnd.gradle.Resolve::class) {
         setBndrun("example.bndrun")
     }
     
-    val run by registering(Bndrun::class) {
+    val run by registering(aQute.bnd.gradle.Bndrun::class) {
         dependsOn(resolve)
         setBndrun("example.bndrun")
     }
