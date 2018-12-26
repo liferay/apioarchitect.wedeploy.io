@@ -54,7 +54,7 @@ With this, you are ready to expose persons in your API, containing their `Id` as
 In our case, to keep things simple, we will add an static utility method in your `Person` interface to create new persons easily (we will use this method in the following step). In a more real code, you will probably have a separate class with the actual implementation, but for now let's keep it simple:
 
 ```java
-static Person of(int id, String name, String jobTitle) {
+static Person of(long id, String name, String jobTitle) {
     return new Person() {
         @Override
         public String getName() {
