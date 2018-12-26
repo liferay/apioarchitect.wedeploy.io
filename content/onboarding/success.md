@@ -13,13 +13,9 @@ Now you are ready to run your example. Just execute the following command from y
 
 Wait a few seconds while the container gets up and try your API by calling your two endpoints.
 
-```bash
+```bash /person
 curl localhost:8080/api/person -H "Accept: application/json"
-```
 
-Which will return the list of persons:
-
-```json
 {
   "totalNumberOfItems" : 2,
   "numberOfItems" : 2,
@@ -43,15 +39,9 @@ Which will return the list of persons:
 }
 ```
 
-Or:
-
-```bash
+```bash /person/{id}
 curl localhost:8080/api/person/1 -H "Accept: application/json"
-```
 
-Which will return a single person:
-
-```json
 {
   "name" : "Alex",
   "jobTitle" : "Developer",
