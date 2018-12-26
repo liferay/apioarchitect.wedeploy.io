@@ -51,7 +51,7 @@ class CredentialsProvider : Provider<Credentials> {
 
 For this class to compile, you need to add `javax.servlet` dependency to your project's `build.gradle` `dependencies` block:
 
-```groovy
+```groovy gradle
 //highlight-range{3}
 dependencies {
     implementation group: "com.liferay", name: "com.liferay.apio.architect.api", version: "2.0.0-20181212.154022-16"
@@ -60,7 +60,7 @@ dependencies {
 }
 ```
 
-```kotlin
+```kotlin kotlin-dsl
 //highlight-range{4}
 dependencies {
     implementation(kotlin("stdlib"))
@@ -75,7 +75,7 @@ Now you are ready to run your example.
 
 First, include the `biz.aQute.bnd.gradle` in your gradle's classpath by adding the following block at the beginning of your `build.gradle` file:
 
-```groovy
+```groovy gradle
 buildscript {
     repositories {
         mavenCentral()
@@ -86,7 +86,7 @@ buildscript {
 }
 ```
 
-```kotlin
+```kotlin kotlin-dsl
 buildscript {
     repositories {
         mavenCentral()
@@ -99,36 +99,26 @@ buildscript {
 
 Then, add the following tasks to your `build.gradle` file:
 
-```groovy
-// These two imports should be placed at the beginning of 
-// your `build.gradle` file
-import aQute.bnd.gradle.Bndrun
-import aQute.bnd.gradle.Resolve
-
-task resolve(type: Resolve) {
+```groovy gradle
+task resolve(type: aQute.bnd.gradle.Resolve) {
     bndrun 'example.bndrun'
 }
 
-task run(type: Bndrun) {
+task run(type: aQute.bnd.gradle.Bndrun) {
     dependsOn resolve
 
     bndrun 'example.bndrun'
 }
 ```
 
-```kotlin
-// These two imports should be placed at the beginning of 
-// your `build.gradle` file
-import aQute.bnd.gradle.Bndrun
-import aQute.bnd.gradle.Resolve
-
+```kotlin kotlin-dsl
 tasks {
 
-    val resolve by registering(Resolve::class) {
+    val resolve by registering(aQute.bnd.gradle.Resolve::class) {
         setBndrun("example.bndrun")
     }
     
-    val run by registering(Bndrun::class) {
+    val run by registering(aQute.bnd.gradle.Bndrun::class) {
         dependsOn(resolve)
         setBndrun("example.bndrun")
     }
@@ -156,7 +146,7 @@ Last thing is to instruct gradle how to run an OSGi container with both Apio Arc
 
 And add all the `runtime` dependencies to your project's `build.gradle` `dependencies` block:
 
-```groovy
+```groovy gradle
 //highlight-range{6-16}
 dependencies {
     implementation group: "com.liferay", name: "com.liferay.apio.architect.api", version: "2.0.0-20181212.154022-16"
@@ -177,7 +167,7 @@ dependencies {
 }
 ```
 
-```kotlin
+```kotlin kotlin-dsl
 //highlight-range{8-18}
 dependencies {
     implementation(kotlin("stdlib"))

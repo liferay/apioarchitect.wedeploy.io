@@ -7,7 +7,7 @@ short: Bundle
 
 To create the OSGi bundle, we need to annotate your newly created `ActionRouter` with `@Component` annotation. But first, we need to add the OSGi annotations dependency to the `build.gradle`'s `dependencies` block:
 
-```groovy
+```groovy gradle
 //highlight-range{3}
 dependencies {
     implementation group: "com.liferay", name: "com.liferay.apio.architect.api", version: "2.0.0-20181212.154022-16"
@@ -15,7 +15,7 @@ dependencies {
 }
 ```
 
-```kotlin
+```kotlin kotlin-dsl
 //highlight-range{4}
 dependencies {
     implementation(kotlin("stdlib"))
@@ -83,7 +83,7 @@ class PersonActionRouter : ActionRouter<Person> {
 
 With that you will expose `PersonActionRouter` as an `ActionRouter` to the OSGi machinery. Then, you need to convert your generated `jar` to an OSGi bundle. Achieving this is as simple as adding the `bndtools` Gradle plugin:
 
-```groovy
+```groovy gradle
 //highlight-range{3}
 plugins {
     id 'java'
@@ -91,7 +91,7 @@ plugins {
 }
 ```
 
-```kotlin
+```kotlin kotlin-dsl
 //highlight-range{4}
 plugins {
     java
@@ -100,15 +100,33 @@ plugins {
 }
 ```
 
-And, finally, create a `bnd.bnd` file in your project's root folder with the following content:
+And, finally, update your JAR's `MANIFEST.MF` with the bundle's name, symbolic name and version:
 
-```properties
-Bundle-Name: Apio Architect Example
-Bundle-SymbolicName: apio.architect.example
-Bundle-Version: 1.0.0
+```groovy gradle
+jar {
+    manifest {
+        attributes(
+            "Bundle-Name": "Apio Architect Example",
+            "Bundle-SymbolicName": "apio.architect.example",
+            "Bundle-Version": "1.0.0"
+        )
+    }
+}
 ```
 
-Consequently, everytime you invoke the `jar` task in the project, all the necesary BND properties will be present in your `META-INF/MANIFEST.MF`.
+```kotlin kotlin-dsl
+tasks.withType<Jar> {
+    manifest {
+        attributes(
+            "Bundle-Name" to "Apio Architect Example",
+            "Bundle-SymbolicName" to "apio.architect.example",
+            "Bundle-Version" to "1.0.0"
+        )
+    }
+}
+```
+
+Consequently, everytime you invoke the `jar` task in the project, all the necessary BND properties will be present in your `META-INF/MANIFEST.MF`.
 
 If you want to try it, execute the following command (after doing a `./gradlew jar`):
 
