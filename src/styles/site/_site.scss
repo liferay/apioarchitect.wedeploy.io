@@ -3,24 +3,24 @@ body {
 	font-size: 1rem;
 
 	.bg-primary, .btn-primary {
-		background-color: $primary-color !important;
+		background-color: $brand-primary !important;
 	}
 
 	.btn-primary {
-		border-color: $primary-color !important;
+		border-color: $brand-primary !important;
 	}
 
 	.btn-primary:hover,.btn-primary:focus {
-		background-color: $accent-color !important;
-		border-color: $accent-color !important;
+		background-color: $brand-secondary !important;
+		border-color: $brand-secondary !important;
 	}
 
 	.link-primary {
-		color: $primary-color;
+		color: $brand-primary;
 	}
 
 	.multi-step-item.active .multi-step-icon {
-		background-color: $primary-color;
+		background-color: $brand-primary;
 	}
 
 	@media (max-width: $grid-float-breakpoint - 1) {
