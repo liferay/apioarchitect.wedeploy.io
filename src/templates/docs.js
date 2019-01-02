@@ -5,10 +5,12 @@ import React, { Component } from 'react';
 
 import SimpleFooter from '../components/SimpleFooter';
 import Sidebar from '../components/Sidebar';
+import LayoutNav from '../components/LayoutNav';
 import CodeTabs from '../components/CodeTabs';
 import CodeClipboard from '../components/CodeClipboard';
 import Typography from '../components/Typography';
 import Auth from '../components/Auth';
+import { logout } from '../services/auth';
 
 export default class Docs extends Component {
     componentDidMount() {
@@ -19,6 +21,12 @@ export default class Docs extends Component {
     componentWillUnmount() {
         this._codeTabs = null;
         this._codeClipboard.dispose();
+    }
+
+    _handleLogout() {
+        logout().then(() => {
+            this.forceUpdate();
+        });
     }
 
     render() {
@@ -42,6 +50,10 @@ export default class Docs extends Component {
                             content={`${timeToRead} min read`}
                         />
                     </Helmet>
+
+                    <header>
+                        <LayoutNav effect={true} static={true} />
+                    </header>
                     <main className="content">
                         <Sidebar location={location} />
                         <div className="sidebar-offset">

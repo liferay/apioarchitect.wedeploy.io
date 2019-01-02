@@ -37,7 +37,7 @@ export default (props) => (
                                                 <div className="multi-step-divider"></div>
                                             }
                                             <div className="multi-step-indicator">
-                                                 <div className="multi-step-indicator-label">{handleSuccessPage_(slug, stepNumber, short)}</div>
+                                                <div className="multi-step-indicator-label">{handleSuccessPage_(slug, stepNumber, short)}</div>
                                                 <Link className="multi-step-icon" data-multi-step-icon={`${stepNumber}`} to={slug}></Link>
                                             </div>
                                         </li>
@@ -53,13 +53,13 @@ export default (props) => (
 )
 
 const handleSuccessPage_ = (slug, stepNumber, short) => {
-    if (short.length > 0) {
-        return short
+    if (short !== undefined && short.length > 0) {
+        return short;
     } else if (slug.endsWith('success.html')) {
         return 'Final Step';
     }
     return `Step ${stepNumber}`;
-}
+};
 
 const handleActiveOrCompletedClasses_ = (stepNumber, activeStepNumber) => {
     if (activeStepNumber === stepNumber) {
