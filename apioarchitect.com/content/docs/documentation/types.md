@@ -13,6 +13,8 @@ Creating the transfer object makes these features available:
 
 First, you must create an annotated interface that extends the `Identifier` interface parameterized with the type. This tells Apio Architect which type class identifies the resource. In this example, the type is `Long`: 
 
+<span id="blog-posting"/>
+
 ```java
 @Type("BlogPosting")
 public interface BlogPosting extends Identifier<Long> {
