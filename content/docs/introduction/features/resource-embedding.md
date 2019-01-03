@@ -1,6 +1,6 @@
 ---
 title: "Resource Embedding"
-weight: 8
+order: 3
 ---
 
 Fill

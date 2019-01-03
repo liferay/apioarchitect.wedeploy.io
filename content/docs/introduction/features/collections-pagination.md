@@ -1,6 +1,6 @@
 ---
 title: "Pagination"
-weight: 8
+order: 2
 ---
 
 Fill

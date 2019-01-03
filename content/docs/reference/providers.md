@@ -1,6 +1,6 @@
 ---
 title: "Providers"
-weight: 4
+order: 3
 ---
 
 A Provider is an extension point in Apio Architect that lets you extract and reuse values from the request, rather than extracting such values each time you need them. Apio Architect providers follow the same approach as JAX-RS context providers. 

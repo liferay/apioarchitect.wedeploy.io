@@ -1,6 +1,6 @@
 ---
 title: "Representor pattern"
-weight: 7
+order: 6
 ---
 
 Fill

@@ -1,6 +1,6 @@
 ---
 title: "Discoverability"
-weight: 9
+order: 4
 ---
 
 Fill

@@ -1,6 +1,6 @@
 ---
 title: "Exception Mappers"
-weight: 3
+order: 4
 ---
 
 Together with [providers](/docs/reference/providers.html), exception mappers are a way to override the Apio Architect runtime. Exception mappers let you automatically convert an exception of your domain (e.g., `NoSuchUserException` or `NotAuthenticatedException`) into an HTTP-domain exception with the related status code. 

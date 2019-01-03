@@ -1,6 +1,6 @@
 ---
 title: "Home URL"
-weight: 10
+order: 3
 ---
 
 Fill

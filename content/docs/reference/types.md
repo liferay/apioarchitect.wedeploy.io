@@ -1,6 +1,6 @@
 ---
 title: "Types"
-weight: 5
+order: 2
 ---
 
 Shared vocabularies are a pillar of evolvable APIs. They avoid coupling external consumers with internal details. Creating an explicit transfer object lets the project internals change without requiring consumers to change.

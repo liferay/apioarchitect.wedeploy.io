@@ -1,6 +1,6 @@
 ---
 title: "Why should I use Apio Architect"
-weight: 7
+order: 2
 ---
 
 As an API developer, you must develop your API's core functionality. For example, this could include executing internal services, accessing a database, or invoking external systems. Once you have data, you must convert it to your API contract's model and send it to the client as a properly formatted response. There are many tasks associated with parsing the request and formatting the response in the way that your API's clients expect. Here are some examples of such tasks:
