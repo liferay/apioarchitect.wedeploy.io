@@ -23,7 +23,7 @@ class Navigation extends Component {
         const id = match[match.length - 1].split('.');
 
         if (section.items) {
-            return true
+            return match.includes(section.id);
         }
 
         return id[0] === section.id;
