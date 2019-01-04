@@ -88,7 +88,7 @@ public String getArticleBody(Locale locale)
 The `@Field` annotation contains these additional properties: 
 
 * `schemaURL`: Lets you configure the schema used. 
-* `mode`: Lets you set when the field is used. The type interface converts the object to a supported format and parses the body in a request. Some fields, however, only function in one such task. These `mode` property values let you choose when the field is used:
+* `mode`: <span id="mode"/>Lets you set when the field is used. The type interface converts the object to a supported format and parses the body in a request. Some fields, however, only function in one such task. These `mode` property values let you choose when the field is used:
 	* `READ_ONLY`: The field is used only for parsing the body.
 	* `WRITE_ONLY`: The field is used only for representing the entity.
 	* `READ_WRITE`: The field is used in both cases.
