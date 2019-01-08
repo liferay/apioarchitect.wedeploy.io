@@ -5,7 +5,7 @@ order: 3
 
 Performed by executing a `DELETE` request on the resource's URI. 
 
-When a method is annotated with `@Remove` the library is told that that method is in charge of "removing" data. This annotation can only be used to declare actions that remove individual elements.
+When a method is annotated with `@Remove` the library will use it to remove data. This annotation can only be used to declare actions that remove individual elements.
 
 ### Using `@Remove` to delete a single element
 

@@ -5,7 +5,7 @@ order: 2
 
 Performed by executing a `POST` request on the resource's URI. 
 
-When a method is annotated with `@Create` the library is told that that method is in charge of "creating" data. This annotation can be used to declare actions that create and add elements to all types of collections. Let's see the use depending on each case:
+When a method is annotated with `@Create` the library will use it to create data. This annotation can be used to declare actions that create and add elements to all types of collections. Let's see the use depending on each case:
 
 ### Using `@Create` to create a new element
 

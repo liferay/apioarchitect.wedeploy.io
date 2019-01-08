@@ -5,7 +5,7 @@ order: 1
 
 The most typical action that can be done on a resource. Performed by executing a `GET` request on the resource's URI. 
 
-When a method is annotated with `@Retrieve` the library is told that that method is in charge of "getting" data. This annotation can be used to declare actions that obtain both individual elements and all types of collections. Let's see the use depending on each case:
+When a method is annotated with `@Retrieve` the library will use it to get data. This annotation can be used to declare actions that obtain both individual elements and all types of collections. Let's see the use depending on each case:
 
 ### Using `@Retrieve` to get a "root" collection
 

@@ -5,7 +5,7 @@ order: 4
 
 Performed by executing a `PUT` request on the resource's URI. 
 
-When a method is annotated with `@Replace` the library is told that that method is in charge of "replacing" data. This annotation can only be used to declare actions that replace individual elements.
+When a method is annotated with `@Replace` the library will use it to replace data. This annotation can only be used to declare actions that replace individual elements.
 
 ### Using `@Replace` to replace a single element
 
