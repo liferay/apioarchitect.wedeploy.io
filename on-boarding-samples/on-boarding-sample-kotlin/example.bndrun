@@ -1,0 +1,13 @@
+-runee: JavaSE-1.8
+
+-runfw: org.eclipse.osgi;version=3.13.0
+
+-runrequires: \
+    osgi.identity;filter:='(osgi.identity=apio.architect.example)',\
+    osgi.identity;filter:='(osgi.identity=org.apache.aries.jax.rs.whiteboard)',\
+    osgi.identity;filter:='(osgi.identity=org.apache.felix.scr)',\
+    osgi.identity;filter:='(osgi.identity=com.liferay.apio.architect.exception.mapper.impl)',\
+    osgi.identity;filter:='(osgi.identity=com.liferay.apio.architect.impl)',\
+    osgi.identity;filter:='(osgi.identity=com.liferay.apio.architect.uri.mapper.impl)',\
+
+-runsystemcapabilities: ${native_capability}
