@@ -3,7 +3,7 @@ title: "How do I declare actions?"
 order: 2
 ---
 
-Declaring a set of actions on a resource with Apio Architect is simple as pie. We will simply have to create a class that will act as a router for our actions. This class will have to implement the `ActionRouter` interface, which will have a generic type, corresponding to the type for which we are going to declare the actions. Actions will just be annotated methods inside this class.
+Declaring a set of actions on a resource with Apio Architect is easy as pie. We will simply have to create a class that will act as a router for our actions. This class will have to implement the `ActionRouter` interface, which will have a generic type, corresponding to the type for which we are going to declare the actions. Actions will just be annotated methods inside this class.
 
 > The generic type of `ActionRouter` must be a valid Apio Architect's type (see [the documentation on types](/docs/reference/types.html) for more information).
 
