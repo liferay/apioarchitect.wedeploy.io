@@ -1,5 +1,5 @@
 ---
 redirect: "https://javadoc-apioarchitect.wedeploy.io"
-title: "Reference"
+title: "Javadoc reference"
 order: 3
 ---

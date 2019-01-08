@@ -1,6 +1,6 @@
 ---
 redirect: "/docs/introduction.html"
-title: "Documentation"
+title: "Documentation reference"
 order: 2
 alwaysActive: true
 ---
