@@ -26,4 +26,4 @@ Okay, but how do I write that endpoint with Apio Architect? To begin with, in Ap
 BlogPosting retrieve(@Id long id);
 ```
 
-As you can see, with Apio Architect we don't have to annotate the method with anything that indicates URLs, HTTP verbs, or media-types, just with the type of action that this Java method is going to execute. In addition, we are indicating to the library that this method corresponds to the "retrieve" action of a specific blog-posting, because we have annotated one of its parameters with `@Id` (we will see this in depth later).
+As you can see, with Apio Architect we don't have to annotate the method with anything that indicates URLs, HTTP verbs, or media-types, only the type of action that this Java method is going to execute. In addition, we are indicating to the library that this method corresponds to the "retrieve" action of a specific blog-posting, because we have annotated one of its parameters with `@Id` (we will see this in depth later).
