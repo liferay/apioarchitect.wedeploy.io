@@ -3,7 +3,7 @@ title: "Declaring Endpoints"
 weight: 7
 ---
 
-In a typical REST scenario, we have endpoints, which indicate how to access a resource. Endpoints have an URL and an HTTP method (`POST`, `PUT`...) that binds them to an specific place with an specific contract (the method). For example, this is all you need in typical Java API libraries to create a `GET` endpoint on a `BlogPosting` resource:
+In a typical REST scenario, we have endpoints, which indicate how to access a resource. Endpoints have an URL and an HTTP method (`POST`, `PUT`...) that binds them to a specific place with a specific contract (the method). For example, this is all you need in typical Java API libraries to create a `GET` endpoint on a `BlogPosting` resource:
 
 ```java JAX-RS
 @GET
