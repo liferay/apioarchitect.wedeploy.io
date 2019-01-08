@@ -13,8 +13,28 @@
 
 # [apioarchitect.com](http://apioarchitect.com)
 
-Contains the code for [apioarchitect.com](http://apioarchitect.com) and [javadoc.apioarchitect.com](http://javadoc.apioarchitect.com)
+[Apio Architect](https://github.com/liferay/com-liferay-apio-architect) documentation at [apioarchitect.com](http://apioarchitect.com)
+
+You'll need [`yarn`](https://yarnpkg.com/docs/install/) to run this page locally.
+
+## Running in development:
+
+```bash
+yarn develop
+```
+
+## Running in production mode:
+
+```bash
+yarn build
+````
+
+## Serving production generated files:
+
+```bash
+yarn serve
+````
 
 ## License
 
-[LGPL v3 License](./LICENSE) © Liferay, Inc.
+[LGPL v3 License](../LICENSE) © Liferay, Inc.
