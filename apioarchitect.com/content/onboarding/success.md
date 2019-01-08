@@ -1,17 +1,15 @@
 ---
-title: Running the example
+title: Running the Example
 description: Run the OSGi container
 stepNumber: 6
 short: Run
 ---
 
-Now you are ready to run your example. Just execute the following command from your project's root directory:
+Now you're ready to run your example! 
 
-```bash
-./gradlew run
-```
+If you followed the previous steps to generate an OSGi container, start it up by running `./gradlew run` in your project's root directory (this also deploys your API to that container). Otherwise, deploy your API's JAR file to your existing OSGi container. 
 
-Wait a few seconds while the container gets up and try your API by calling your two endpoints.
+Wait a few seconds for the container to start up or your API deployment to complete, then try your API by calling your two endpoints:
 
 ```bash /person
 curl localhost:8080/api/person -H "Accept: application/json"
@@ -49,157 +47,151 @@ curl localhost:8080/api/person/1 -H "Accept: application/json"
 }
 ```
 
-Furthermore, if you want to try your API with a quick JUnit test, first add the following code to your project's `build.gradle`:
+Note that you can also try your API with a quick JUnit test. Follow these steps to do so: 
 
-```groovy gradle
-dependencies {
-    // ... the other dependencies
-    
-    testImplementation group: "khttp", name: "khttp", version: "0.1.0"
-    testImplementation group: "org.junit.jupiter", name: "junit-jupiter-api", version: "5.3.1"
-    testRuntimeOnly group: "org.junit.jupiter", name: "junit-jupiter-engine", version: "5.3.1"
-}
-    
-test {
-    useJUnitPlatform()
-}
-```
+1.  Add this code to your project's `build.gradle`:
 
-```kotlin kotlin-dsl
-dependencies {
-    // ... the other dependencies
-    
-    testImplementation("khttp:khttp:0.1.0")
-    testCompile("org.junit.jupiter:junit-jupiter-api:5.3.2")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.3.2")
+        // Groovy
+        dependencies {
+            // ... the other dependencies
 
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
-}
-```
-
-And create a file named `APITests` in `src/test/java/apio/architect/example` containing the following:
-
-```java
-package apio.architect.example;
-
-import khttp.KHttp;
-import khttp.responses.Response;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.junit.jupiter.api.Test;
-
-import static java.util.Collections.singletonMap;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-class APITests {
-
-    @Test
-    void personEndpointShouldReturnPersonList() {
-        Response response = KHttp.get(
-            "http://localhost:8080/api/person",
-            singletonMap("Accept", "application/json"));
-
-        assertEquals(200, response.getStatusCode());
-
-        JSONObject jsonObject = response.getJsonObject();
-
-        assertEquals(2, jsonObject.get("totalNumberOfItems"));
-
-        JSONArray elements = (JSONArray) jsonObject.get("elements");
-
-        JSONObject alex = (JSONObject) elements.get(0);
-
-        assertEquals("Alex", alex.get("name"));
-        assertEquals("Developer", alex.get("jobTitle"));
-
-        JSONObject david = (JSONObject) elements.get(1);
-
-        assertEquals("David", david.get("name"));
-        assertEquals("Developer", david.get("jobTitle"));
-    }
-
-    @Test
-    void personIdEndpointShouldReturnSinglePerson() {
-        Response response = KHttp.get(
-            "http://localhost:8080/api/person/1",
-            singletonMap("Accept", "application/json"));
-
-        assertEquals(200, response.getStatusCode());
-
-        JSONObject jsonObject = response.getJsonObject();
-
-        assertEquals("Alex", jsonObject.get("name"));
-        assertEquals("Developer", jsonObject.get("jobTitle"));
-    }
-
-}
-```
-
-```kotlin
-package apio.architect.example
-
-import org.json.JSONArray
-import org.json.JSONObject
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
-
-class APITests {
-
-    @Test
-    fun `person endpoint should return 🧔🧔`() {
-        val response = khttp.get(
-                url = "http://localhost:8080/api/person",
-                headers = mapOf("Accept" to "application/json"))
-
-        assertEquals(200, response.statusCode)
-
-        assertEquals(2, response.jsonObject["totalNumberOfItems"])
-
-        (response.jsonObject["elements"] as JSONArray).apply {
-            with(get(0) as JSONObject) {
-                assertEquals("Alex", get("name"))
-                assertEquals("Developer", get("jobTitle"))
-            }
-            with(get(1) as JSONObject) {
-                assertEquals("David", get("name"))
-                assertEquals("Developer", get("jobTitle"))
-            }
+            testImplementation group: "khttp", name: "khttp", version: "0.1.0"
+            testImplementation group: "org.junit.jupiter", name: "junit-jupiter-api", version: "5.3.1"
+            testRuntimeOnly group: "org.junit.jupiter", name: "junit-jupiter-engine", version: "5.3.1"
         }
-    }
+    
+        test {
+            useJUnitPlatform()
+        }
 
-    @Test
-    fun `person|{id} endpoint should return 🧔`() {
-        val response = khttp.get(
-                url = "http://localhost:8080/api/person/1",
-                headers = mapOf("Accept" to "application/json"))
 
-        assertEquals(200, response.statusCode)
+        // Kotlin
+        dependencies {
+            // ... the other dependencies
 
-        assertEquals("Alex", response.jsonObject["name"])
-        assertEquals("Developer", response.jsonObject["jobTitle"])
-    }
+            testImplementation("khttp:khttp:0.1.0")
+            testCompile("org.junit.jupiter:junit-jupiter-api:5.3.2")
+            testRuntime("org.junit.jupiter:junit-jupiter-engine:5.3.2")
 
-}
-```
+        }
 
-Then run `./gradlew run` in a terminal session, wait for launching, and run `./gradlew test` in another terminal:
+        tasks.withType<Test> {
+            useJUnitPlatform()
+        }
 
-```bash
-./gradlew test
+2.  Create a file named `APITests` in `src/test/java/apio/architect/example` that contains the following:
 
-BUILD SUCCESSFUL in 2s
-5 actionable tasks: 4 executed, 1 up-to-date
-```
+        // Java
+        package apio.architect.example;
 
-Congratulations! You have created your first API with Apio Architect!
+        import khttp.KHttp;
+        import khttp.responses.Response;
+        import org.json.JSONArray;
+        import org.json.JSONObject;
+        import org.junit.jupiter.api.Test;
 
-The final code from this guide can be find [here](https://github.com/liferay/apioarchitect.wedeploy.io/tree/master/on-boarding-samples).
+        import static java.util.Collections.singletonMap;
+        import static org.junit.jupiter.api.Assertions.assertEquals;
 
-# 🎉🎉🎉
+        class APITests {
 
-If you want to go deeper, feel free to browse the rest of the [documentation](/docs/), where you will find examples by use case and other features of the library.
+            @Test
+            void personEndpointShouldReturnPersonList() {
+                Response response = KHttp.get(
+                    "http://localhost:8080/api/person",
+                    singletonMap("Accept", "application/json"));
+
+                assertEquals(200, response.getStatusCode());
+
+                JSONObject jsonObject = response.getJsonObject();
+
+                assertEquals(2, jsonObject.get("totalNumberOfItems"));
+
+                JSONArray elements = (JSONArray) jsonObject.get("elements");
+
+                JSONObject alex = (JSONObject) elements.get(0);
+
+                assertEquals("Alex", alex.get("name"));
+                assertEquals("Developer", alex.get("jobTitle"));
+
+                JSONObject david = (JSONObject) elements.get(1);
+
+                assertEquals("David", david.get("name"));
+                assertEquals("Developer", david.get("jobTitle"));
+            }
+
+            @Test
+            void personIdEndpointShouldReturnSinglePerson() {
+                Response response = KHttp.get(
+                    "http://localhost:8080/api/person/1",
+                    singletonMap("Accept", "application/json"));
+
+                assertEquals(200, response.getStatusCode());
+
+                JSONObject jsonObject = response.getJsonObject();
+
+                assertEquals("Alex", jsonObject.get("name"));
+                assertEquals("Developer", jsonObject.get("jobTitle"));
+            }
+
+        }
+
+
+        // Kotlin
+        package apio.architect.example
+
+        import org.json.JSONArray
+        import org.json.JSONObject
+        import org.junit.jupiter.api.Assertions.assertEquals
+        import org.junit.jupiter.api.Test
+
+        class APITests {
+
+            @Test
+            fun `person endpoint should return 🧔🧔`() {
+                val response = khttp.get(
+                        url = "http://localhost:8080/api/person",
+                        headers = mapOf("Accept" to "application/json"))
+
+                assertEquals(200, response.statusCode)
+
+                assertEquals(2, response.jsonObject["totalNumberOfItems"])
+
+                (response.jsonObject["elements"] as JSONArray).apply {
+                    with(get(0) as JSONObject) {
+                        assertEquals("Alex", get("name"))
+                        assertEquals("Developer", get("jobTitle"))
+                    }
+                    with(get(1) as JSONObject) {
+                        assertEquals("David", get("name"))
+                        assertEquals("Developer", get("jobTitle"))
+                    }
+                }
+            }
+
+            @Test
+            fun `person|{id} endpoint should return 🧔`() {
+                val response = khttp.get(
+                        url = "http://localhost:8080/api/person/1",
+                        headers = mapOf("Accept" to "application/json"))
+
+                assertEquals(200, response.statusCode)
+
+                assertEquals("Alex", response.jsonObject["name"])
+                assertEquals("Developer", response.jsonObject["jobTitle"])
+            }
+
+        }
+
+3.  Run `./gradlew run` in a terminal session, and wait for the container to launch. Then run `./gradlew test` in another terminal:
+
+        ./gradlew test
+
+        BUILD SUCCESSFUL in 2s
+        5 actionable tasks: 4 executed, 1 up-to-date
+
+Congratulations! You created your first API with Apio Architect! You can find this example's final code [here](https://github.com/liferay/apioarchitect.wedeploy.io/tree/master/on-boarding-samples).
+
+To learn more, see the rest of the [documentation](/docs/), which contains examples by use case and other features of the library.
 
 ![end](/images/onboarding/the_end.gif)
