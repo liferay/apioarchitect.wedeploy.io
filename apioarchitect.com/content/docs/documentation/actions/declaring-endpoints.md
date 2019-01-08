@@ -19,7 +19,7 @@ public BlogPosting getBlogPosting(@PathVariable("id") long id);
 
 As you can see, we need to indicate the URI where that endpoints lives, along with the method and output media type information.
 
-Okay, but how do I write that endpoint with Apio Architect? To begin with, in Apio Architect we don't talk about endpoints, but about actions on resources. Apio Architect allows developers to abstract from all the logic of URLs, verbs and media-types, allowing them to focus only on the important things: the semantics of the action. Thus, the previous example, written with Apio Architect would be:
+Okay, but how do I write that endpoint with Apio Architect? To begin with, in Apio Architect we don't talk about endpoints, but about actions on resources. Apio Architect allows developers to abstract from all the logic of URLs, verbs, and media-types, allowing them to focus only on the important things: the semantics of the action. Thus, the previous example, written with Apio Architect would be:
 
 ```java
 @Retrieve
