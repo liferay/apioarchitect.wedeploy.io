@@ -13,5 +13,6 @@ install:
   - yarn
 
 script:
+  - cd apioarchitect.com
   - rm -rf public/ .cache/
   - yarn build
