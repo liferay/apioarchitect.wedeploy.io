@@ -33,6 +33,13 @@ public interface Person extends Identifier<Long> {
 ```
 
 ```kotlin
+package apio.architect.example
+
+import com.liferay.apio.architect.annotation.Id
+import com.liferay.apio.architect.annotation.Vocabulary
+import com.liferay.apio.architect.annotation.Vocabulary.Field
+import com.liferay.apio.architect.identifier.Identifier
+
 @Type("Person")
 interface Person : Identifier<Long> {
 
