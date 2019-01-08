@@ -1,6 +1,6 @@
 <div align="center">
     <a href="https://travis-ci.org/liferay/apioarchitect.wedeploy.io">
-        <img src="https://travis-ci.org/liferay/apioarchitect.wedeploy.io?branch=master" alt="Travis CI" />
+        <img src="https://travis-ci.org/liferay/apioarchitect.wedeploy.io.svg?branch=master" alt="Travis CI" />
     </a>
     <a href='https://www.gnu.org/licenses/lgpl-3.0'>
         <img src='https://img.shields.io/badge/License-LGPL%20v3-blue.svg' alt='License: LGPL v3' />
