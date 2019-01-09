@@ -9,7 +9,7 @@ short: Build
 TODO: Remove the need for `javax.servlet` by making a credentials' provider not mandatory
 -->
 
-Now you're ready to finalize your environment. The first two steps here show you how to use credentials with Apio Architect. The remaining steps show you how to generate an OSGi container for running your API. Note that you don't need to generate an OSGi container if you already have one (e.g., Liferay CE Portal 7.1 and Liferay DXP 7.1 already have an OSGi container). 
+Now you're ready to finalize your environment. The first two steps here show you how to use credentials with Apio Architect. The remaining steps show you how to generate an OSGi container for running your API.
 
 1\.  Create a class that tells Apio Architect how to get the user credentials necessary for making authenticated requests. Do this by implementing the `Provider` interface parameterized with `Credentials`: 
 
@@ -72,7 +72,7 @@ dependencies {
 }
 ```
 
-3\.  If you already have an OSGi container (e.g., Liferay CE Portal 7.1 and Liferay DXP 7.1 already have an OSGi container), then you can skip the rest of these steps. Otherwise, you must generate an OSGi container for your API. To do so, first include `biz.aQute.bnd.gradle` in your Gradle classpath by adding the following block at the beginning of your `build.gradle` file: 
+3\.  Now, you must generate an OSGi container for your API. To do so, first include `biz.aQute.bnd.gradle` in your Gradle classpath by adding the following block at the beginning of your `build.gradle` file: 
 
 ```groovy gradle
 buildscript {

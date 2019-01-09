@@ -129,7 +129,7 @@ tasks.withType<Jar> {
 }
 ```
 
-5\.  To test this, run `gradlew jar` and then execute this command: 
+5\.  To test this, run `./gradlew jar` and then execute this command: 
 
 ```bash
 unzip -p build/libs/*.jar META-INF/MANIFEST.MF
