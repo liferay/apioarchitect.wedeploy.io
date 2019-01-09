@@ -15,80 +15,102 @@ To define an API in Apio Architect, start by defining and exposing a resource mo
 
     For example, to create an example `Person` resource, create the following `Person` interface inside `src/main/java/apio/architect/example`. The interface's `@Type` annotation defines the `Person` type. The `getName` and `getJobTitle` methods are annotated with `@Field` and define the `name` and `jobTitle` fields, respectively. And since the `getId` method will return the `Person`'s ID, that method is annotated with `@Id`: 
 
-        // Java
-        package apio.architect.example;
+```java
+package apio.architect.example;
 
-        import com.liferay.apio.architect.annotation.Id;
-        import com.liferay.apio.architect.annotation.Vocabulary.Field;
-        import com.liferay.apio.architect.annotation.Vocabulary.Type;
-        import com.liferay.apio.architect.identifier.Identifier;
+import com.liferay.apio.architect.annotation.Id;
+import com.liferay.apio.architect.annotation.Vocabulary.Field;
+import com.liferay.apio.architect.annotation.Vocabulary.Type;
+import com.liferay.apio.architect.identifier.Identifier;
 
-        @Type("Person")
-        public interface Person extends Identifier<Long> {
+@Type("Person")
+public interface Person extends Identifier<Long> {
 
-            @Field("name")
-            String getName();
+    @Field("name")
+    String getName();
 
-            @Field("jobTitle")
-            String getJobTitle();
+    @Field("jobTitle")
+    String getJobTitle();
 
-            @Id
-            long getId();
+    @Id
+    long getId();
 
-        }
+}
+```
 
+```kotlin
+package apio.architect.example
 
-        // Kotlin
-        package apio.architect.example
+import com.liferay.apio.architect.annotation.Id
+import com.liferay.apio.architect.annotation.Vocabulary
+import com.liferay.apio.architect.annotation.Vocabulary.Field
+import com.liferay.apio.architect.identifier.Identifier
 
-        import com.liferay.apio.architect.annotation.Id
-        import com.liferay.apio.architect.annotation.Vocabulary
-        import com.liferay.apio.architect.annotation.Vocabulary.Field
-        import com.liferay.apio.architect.identifier.Identifier
+@Type("Person")
+interface Person : Identifier<Long> {
 
-        @Type("Person")
-        interface Person : Identifier<Long> {
+    @get:Field("name")
+    val name: String
 
-            @get:Field("name")
-            val name: String
+    @get:Field("jobTitle")
+    val jobTitle: String
 
-            @get:Field("jobTitle")
-            val jobTitle: String
+    @get:Id
+    val id: Long
 
-            @get:Id
-            val id: Long
-
-            companion object
-        }
+    companion object
+}
+```
 
 2.  Expose the resource in your API. You'll typically do this by implementing your type interface in a separate class, but for simplicity this example adds a static utility method in the `Person` interface: 
 
-        // Java
-        static Person of(long id, String name, String jobTitle) {
-            return new Person() {
-                @Override
-                public String getName() {
-                    return name;
-                }
+```java
+package apio.architect.example;
 
-                @Override
-                public String getJobTitle() {
-                    return jobTitle;
-                }
+import com.liferay.apio.architect.annotation.Id;
+import com.liferay.apio.architect.annotation.Vocabulary.Field;
+import com.liferay.apio.architect.annotation.Vocabulary.Type;
+import com.liferay.apio.architect.identifier.Identifier;
 
-                @Override
-                public long getId() {
-                    return id;
-                }
-            };
-        }
+@Type("Person")
+public interface Person extends Identifier<Long> {
 
+    @Field("name")
+    String getName();
 
-        // Kotlin
-        fun Person.Companion.of(id: Long, name: String, jobTitle: String) = object : Person {
-            override val name: String = name
+    @Field("jobTitle")
+    String getJobTitle();
 
-            override val jobTitle: String = jobTitle
+    @Id
+    long getId();
 
-            override val id: Long = id
-        }
+    static Person of(long id, String name, String jobTitle) {
+        return new Person() {
+            @Override
+            public String getName() {
+                return name;
+            }
+    
+            @Override
+            public String getJobTitle() {
+                return jobTitle;
+            }
+    
+            @Override
+            public long getId() {
+                return id;
+            }
+        };
+    }
+}
+```
+
+```kotlin
+fun Person.Companion.of(id: Long, name: String, jobTitle: String) = object : Person {
+    override val name: String = name
+
+    override val jobTitle: String = jobTitle
+
+    override val id: Long = id
+}
+```
