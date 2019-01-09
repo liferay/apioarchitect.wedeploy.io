@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "rimraf public .cache && gatsby develop",
-    "deploy": "gatsby build && gh-pages -d public -b wedeploy",
+    "deploy": "gatsby build && cd public && we deploy -p apioarchitect",
     "develop": "rimraf public .cache && gatsby develop",
     "start": "npm run develop",
     "build": "gatsby build",
