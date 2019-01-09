@@ -1,3 +1,6 @@
+import aQute.bnd.gradle.Bndrun
+import aQute.bnd.gradle.Resolve
+
 buildscript {
     repositories {
         mavenCentral()
@@ -15,31 +18,33 @@ plugins {
 }
 
 tasks {
-
-    val resolve by registering(aQute.bnd.gradle.Resolve::class) {
+    register<Resolve>("resolve") {
         setBndrun("example.bndrun")
     }
 
-    val run by registering(aQute.bnd.gradle.Bndrun::class) {
-        dependsOn(resolve)
+    register<Bndrun>("run") {
+        dependsOn("resolve")
         setBndrun("example.bndrun")
     }
 
+    withType<Jar> {
+        manifest {
+            attributes(
+                    "Bundle-Name" to "Apio Architect Example",
+                    "Bundle-SymbolicName" to "apio.architect.example",
+                    "Bundle-Version" to "1.0.0"
+            )
+        }
+    }
+
+    withType<Test> {
+        useJUnitPlatform()
+    }
 }
 
 repositories {
     mavenCentral()
     jcenter()
-}
-
-tasks.withType<Jar> {
-    manifest {
-        attributes(
-                "Bundle-Name" to "Apio Architect Example",
-                "Bundle-SymbolicName" to "apio.architect.example",
-                "Bundle-Version" to "1.0.0"
-        )
-    }
 }
 
 dependencies {
@@ -66,8 +71,4 @@ dependencies {
     testCompile("org.junit.jupiter:junit-jupiter-api:5.3.2")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.3.2")
 
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
 }

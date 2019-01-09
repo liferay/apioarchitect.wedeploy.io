@@ -1,3 +1,6 @@
+import aQute.bnd.gradle.Bndrun
+import aQute.bnd.gradle.Resolve
+
 buildscript {
     repositories {
         mavenCentral()
@@ -18,11 +21,11 @@ repositories {
     jcenter()
 }
 
-task resolve(type: aQute.bnd.gradle.Resolve) {
+task resolve(type: Resolve) {
     bndrun 'example.bndrun'
 }
 
-task run(type: aQute.bnd.gradle.Bndrun) {
+task run(type: Bndrun) {
     dependsOn resolve
 
     bndrun 'example.bndrun'
@@ -36,6 +39,10 @@ jar {
                 "Bundle-Version": "1.0.0"
         )
     }
+}
+
+test {
+    useJUnitPlatform()
 }
 
 dependencies {
@@ -58,8 +65,4 @@ dependencies {
     testImplementation group: "khttp", name: "khttp", version: "0.1.0"
     testImplementation group: "org.junit.jupiter", name: "junit-jupiter-api", version: "5.3.1"
     testRuntimeOnly group: "org.junit.jupiter", name: "junit-jupiter-engine", version: "5.3.1"
-}
-
-test {
-    useJUnitPlatform()
 }
