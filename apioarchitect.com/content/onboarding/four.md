@@ -61,13 +61,26 @@ public class PersonRouter implements ActionRouter<Person> {
 ```
 
 ```kotlin
-...
-import org.osgi.service.component.annotations.Component;
-...
+//highlight-range{6,8}
+package apio.architect.example
+
+import com.liferay.apio.architect.router.ActionRouter
+import com.liferay.apio.architect.annotation.Actions.Retrieve
+import com.liferay.apio.architect.annotation.EntryPoint
+import org.osgi.service.component.annotations.Component
 
 @Component
 class PersonRouter : ActionRouter<Person> {
-    ...
+
+    @EntryPoint @Retrieve
+    fun getPersons() = listOf(
+        Person.of(1, "Alex", "Developer"), 
+        Person.of(2, "David", "Developer"))
+
+    @Retrieve
+    fun getPerson(@Id personId: Long) = 
+        Person.of(1, "Alex", "Developer")
+        
 }
 ```
 
