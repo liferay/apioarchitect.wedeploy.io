@@ -7,7 +7,7 @@ short: Bundle
 
 Now you're ready to create the OSGi bundle for your API. Follow these steps to do so: 
 
-1.  Add the OSGi annotations dependency to the `dependencies` block in your `build.gradle`:
+1\.  Add the OSGi annotations dependency to the `dependencies` block in your `build.gradle`:
 
 ```groovy gradle
 dependencies {
@@ -25,7 +25,7 @@ dependencies {
 }
 ```
 
-2.  To expose your Router to OSGi, annotate your Router class with `@Component`. For example, here's the example `PersonActionRouter` class with the `@Component` annotation: 
+2\.  To expose your Router to OSGi, annotate your Router class with `@Component`. For example, here's the example `PersonActionRouter` class with the `@Component` annotation: 
 
 ```java
 package apio.architect.example;
@@ -68,7 +68,7 @@ class PersonActionRouter : ActionRouter<Person> {
 }
 ```
 
-3.  Add the Bndtools Gradle plugin to your `build.gradle` file. When you package your API in a JAR file, Bndtools ensures that JAR file is also an OSGi bundle: 
+3\.  Add the Bndtools Gradle plugin to your `build.gradle` file. When you package your API in a JAR file, Bndtools ensures that JAR file is also an OSGi bundle: 
 
 ```groovy gradle
 plugins {
@@ -85,7 +85,7 @@ plugins {
 }
 ```
 
-4.  The JAR file's manifest (`MANIFEST.MF`) must contain the OSGi bundle's name, symbolic name, and version. To ensure that the manifest contains these properties every time you run the `jar` task in your project, add the following to your `build.gradle` file: 
+4\.  The JAR file's manifest (`MANIFEST.MF`) must contain the OSGi bundle's name, symbolic name, and version. To ensure that the manifest contains these properties every time you run the `jar` task in your project, add the following to your `build.gradle` file: 
 
 ```groovy gradle
 jar {
@@ -111,7 +111,7 @@ tasks.withType<Jar> {
 }
 ```
 
-5.  To test this, run `gradlew jar` and then execute this command: 
+5\.  To test this, run `gradlew jar` and then execute this command: 
 
 ```bash
 unzip -p build/libs/*.jar META-INF/MANIFEST.MF

@@ -49,7 +49,7 @@ curl localhost:8080/api/person/1 -H "Accept: application/json"
 
 Note that you can also try your API with a quick JUnit test. Follow these steps to do so: 
 
-1.  Add this code to your project's `build.gradle`:
+1\.  Add this code to your project's `build.gradle`:
 
 ```groovy gradle
 dependencies {
@@ -80,7 +80,7 @@ tasks.withType<Test> {
 }
 ```
 
-2.  Create a file named `APITests` in `src/test/java/apio/architect/example` that contains the following:
+2\.  Create a file named `APITests` in `src/test/java/apio/architect/example` that contains the following:
 
 ```java
 package apio.architect.example;
@@ -185,7 +185,7 @@ class APITests {
 }
 ```
 
-3.  Run `./gradlew run` in a terminal session, and wait for the container to launch. Then run the following command in another terminal:
+3\.  Run `./gradlew run` in a terminal session, and wait for the container to launch. Then run the following command in another terminal:
 
 ```bash
 ./gradlew test

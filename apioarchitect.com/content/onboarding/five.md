@@ -11,7 +11,7 @@ TODO: Remove the need for `javax.servlet` by making a credentials' provider not 
 
 Now you're ready to finalize your environment. The first two steps here show you how to use credentials with Apio Architect. The remaining steps show you how to generate an OSGi container for running your API. Note that you don't need to generate an OSGi container if you already have one (e.g., Liferay CE Portal 7.1 and Liferay DXP 7.1 already have an OSGi container). 
 
-1.  Create a class that tells Apio Architect how to get the user credentials necessary for making authenticated requests. Do this by implementing the `Provider` interface parameterized with `Credentials`: 
+1\.  Create a class that tells Apio Architect how to get the user credentials necessary for making authenticated requests. Do this by implementing the `Provider` interface parameterized with `Credentials`: 
 
 ```java
 package apio.architect.example;
@@ -50,7 +50,7 @@ class CredentialsProvider : Provider<Credentials> {
 }
 ```
 
-2.  For this class to compile, you must add the `javax.servlet` dependency to your project's `build.gradle` file in the `dependencies` block:
+2\.  For this class to compile, you must add the `javax.servlet` dependency to your project's `build.gradle` file in the `dependencies` block:
 
 ```groovy gradle
 dependencies {
@@ -70,7 +70,7 @@ dependencies {
 }
 ```
 
-3.  If you already have an OSGi container (e.g., Liferay CE Portal 7.1 and Liferay DXP 7.1 already have an OSGi container), then you can skip the rest of these steps. Otherwise, you must generate an OSGi container for your API. To do so, first include `biz.aQute.bnd.gradle` in your Gradle classpath by adding the following block at the beginning of your `build.gradle` file: 
+3\.  If you already have an OSGi container (e.g., Liferay CE Portal 7.1 and Liferay DXP 7.1 already have an OSGi container), then you can skip the rest of these steps. Otherwise, you must generate an OSGi container for your API. To do so, first include `biz.aQute.bnd.gradle` in your Gradle classpath by adding the following block at the beginning of your `build.gradle` file: 
 
 ```groovy gradle
 buildscript {
@@ -94,7 +94,7 @@ buildscript {
 }
 ```
 
-4.  Then add the following tasks to your `build.gradle` file:
+4\.  Then add the following tasks to your `build.gradle` file:
 
 ```groovy gradle
 task resolve(type: aQute.bnd.gradle.Resolve) {
@@ -123,7 +123,7 @@ tasks {
 }
 ```
 
-5.  Now you must tell Gradle how to run an OSGi container with Apio Architect and your example. First, create the following `example.bndrun` file in your project's root directory: 
+5\.  Now you must tell Gradle how to run an OSGi container with Apio Architect and your example. First, create the following `example.bndrun` file in your project's root directory: 
 
 ```properties
 -runee: JavaSE-1.8
@@ -141,7 +141,7 @@ tasks {
 -runsystemcapabilities: ${native_capability}
 ```
 
-6.  Then add these `runtime` dependencies to the `dependencies` block in your project's `build.gradle`: 
+6\.  Then add these `runtime` dependencies to the `dependencies` block in your project's `build.gradle`: 
 
 ```groovy gradle
 dependencies {
