@@ -1,6 +1,6 @@
 ---
 title: Generating an OSGi Bundle
-description: With the endpoint and type created, you will create the OSGi bundle using Bndtools
+description: Using Bndtools to create the OSGi bundle
 stepNumber: 4
 short: Bundle
 ---

@@ -1,9 +1,9 @@
 ---
 mainPage: true
 title: Getting Started
-description: Some steps to start development using Apio Architect
+description: A guide to begin development with Apio Architect
 ---
 
 # Are you ready to take your API to the next level?
 
-Click on _Get Started_ button to start the guide!
+Click _Get Started_ to begin!
