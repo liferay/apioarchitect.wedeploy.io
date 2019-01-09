@@ -29,7 +29,7 @@ tasks {
 
 repositories {
     mavenCentral()
-
+    jcenter()
 }
 
 tasks.withType<Jar> {

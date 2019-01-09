@@ -37,12 +37,14 @@ plugins {
 ```groovy gradle
 repositories {
     mavenCentral()
+    jcenter()
 }
 ```
 
 ```kotlin kotlin-dsl
 repositories {
     mavenCentral()
+    jcenter()
 }
 ```
 

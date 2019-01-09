@@ -15,7 +15,7 @@ plugins {
 
 repositories {
     mavenCentral()
-
+    jcenter()
 }
 
 task resolve(type: aQute.bnd.gradle.Resolve) {
