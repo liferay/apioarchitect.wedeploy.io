@@ -32,23 +32,17 @@ plugins {
 }
 ```
 
-3\.  Configure your project to use the Liferay Public Snapshots repository by adding this `repositories` block in your project's `build.gradle` :
+3\.  Configure your project's dependencies repositories by adding this `repositories` block in your project's `build.gradle` :
 
 ```groovy gradle
 repositories {
     mavenCentral()
-
-    maven {
-        url "https://repository-cdn.liferay.com/nexus/content/groups/public"
-    }
 }
 ```
 
 ```kotlin kotlin-dsl
 repositories {
     mavenCentral()
-
-    maven("https://repository-cdn.liferay.com/nexus/content/groups/public")
 }
 ```
 
