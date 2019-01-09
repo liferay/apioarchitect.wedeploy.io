@@ -65,6 +65,7 @@ interface Person : Identifier<Long> {
 2\.  Expose the resource in your API. You'll typically do this by implementing your type interface in a separate class, but for simplicity this example adds a static utility method in the `Person` interface: 
 
 ```java
+//highlight-range{20-37}
 package apio.architect.example;
 
 import com.liferay.apio.architect.annotation.Id;
@@ -102,6 +103,7 @@ public interface Person extends Identifier<Long> {
             }
         };
     }
+    
 }
 ```
 

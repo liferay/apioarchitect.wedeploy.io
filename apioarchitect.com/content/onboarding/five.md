@@ -53,20 +53,22 @@ class CredentialsProvider : Provider<Credentials> {
 2\.  For this class to compile, you must add the `javax.servlet` dependency to your project's `build.gradle` file in the `dependencies` block:
 
 ```groovy gradle
+//highlight-range{4}
 dependencies {
     implementation group: "com.liferay", name: "com.liferay.apio.architect.api", version: "2.0.0-20181212.154022-16"
-    implementation group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"
     implementation group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
+    implementation group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"
 }
 ```
 
 ```kotlin kotlin-dsl
+//highlight-range{6}
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("osgi-bundle"))
-    implementation("javax.servlet:javax.servlet-api:3.0.1")
-    implementation("org.osgi:org.osgi.service.component.annotations:1.3.0")
     implementation("com.liferay:com.liferay.apio.architect.api:2.0.0-20181212.154022-16")
+    implementation("org.osgi:org.osgi.service.component.annotations:1.3.0")
+    implementation("javax.servlet:javax.servlet-api:3.0.1")
 }
 ```
 
@@ -144,10 +146,11 @@ tasks {
 6\.  Then add these `runtime` dependencies to the `dependencies` block in your project's `build.gradle`: 
 
 ```groovy gradle
+//highlight-range{6-16}
 dependencies {
     implementation group: "com.liferay", name: "com.liferay.apio.architect.api", version: "2.0.0-20181212.154022-16"
-    implementation group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"
     implementation group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
+    implementation group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"
 
     runtime group: "ch.qos.logback", name: "logback-classic", version: "1.2.3"
     runtime group: "com.liferay", name: "com.liferay.apio.architect.exception.mapper.impl", version: "2.0.0-20181212.154037-7"
@@ -164,12 +167,13 @@ dependencies {
 ```
 
 ```kotlin kotlin-dsl
+//highlight-range{8-18}
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("osgi-bundle"))
-    implementation("javax.servlet:javax.servlet-api:3.0.1")
-    implementation("org.osgi:org.osgi.service.component.annotations:1.3.0")
     implementation("com.liferay:com.liferay.apio.architect.api:2.0.0-20181212.154022-16")
+    implementation("org.osgi:org.osgi.service.component.annotations:1.3.0")
+    implementation("javax.servlet:javax.servlet-api:3.0.1")
 
     runtime("ch.qos.logback:logback-classic:1.2.3")
     runtime("com.liferay:com.liferay.apio.architect.exception.mapper.impl:2.0.0-20181212.154037-7")
