@@ -112,16 +112,14 @@ task run(type: aQute.bnd.gradle.Bndrun) {
 
 ```kotlin kotlin-dsl
 tasks {
-
-    val resolve by registering(aQute.bnd.gradle.Resolve::class) {
+    register<aQute.bnd.gradle.Resolve>("resolve") {
         setBndrun("example.bndrun")
     }
-
-    val run by registering(aQute.bnd.gradle.Bndrun::class) {
-        dependsOn(resolve)
+    
+    register<aQute.bnd.gradle.Bndrun>("run") {
+        dependsOn("resolve")
         setBndrun("example.bndrun")
     }
-
 }
 ```
 
