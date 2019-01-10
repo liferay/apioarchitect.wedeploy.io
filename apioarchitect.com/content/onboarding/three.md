@@ -30,7 +30,7 @@ class PersonRouter : ActionRouter<Person>
 2\.  Create your endpoints in your Router class. If an endpoint method retrieves data, annotate it with `@Retrieve`. If the method defines a root endpoint, annotate it with `@EntryPoint`. For example, here's `PersonRouter` with an endpoint that gets all `Person` entities. Note that the method is annotated with `@EntryPoint` and `@Retrieve`. With this information, Apio Architect maps the endpoint to the URL `your_server_url/api/person`: 
 
 ```java
-//highlight-range{12-18}
+//highlight-range{3-4,7-8,12-18}
 package apio.architect.example;
 
 import com.liferay.apio.architect.annotation.Actions.Retrieve;
@@ -54,7 +54,7 @@ public class PersonRouter implements ActionRouter<Person> {
 ```
 
 ```kotlin
-//highlight-range{9-12}
+//highlight-range{4-5,9-12}
 package apio.architect.example
 
 import com.liferay.apio.architect.router.ActionRouter
@@ -74,7 +74,7 @@ class PersonRouter : ActionRouter<Person> {
 Similarly, you can add another method to the Router class to create an endpoint for retrieving a person with a specific ID. This method must return `Person` and take a `long` parameter annotated with `@Id` (to use this annotation, import `com.liferay.apio.architect.annotation.Id`). You must also annotate the method with `@Retrieve`: 
 
 ```java
-//highlight-range{20-23}
+//highlight-range{5,21-24}
 package apio.architect.example;
 
 import com.liferay.apio.architect.annotation.Actions.Retrieve;
@@ -104,7 +104,7 @@ public class PersonRouter implements ActionRouter<Person> {
 ```
 
 ```kotlin
-//highlight-range{14-16}
+//highlight-range{6,15-17}
 package apio.architect.example
 
 import com.liferay.apio.architect.router.ActionRouter

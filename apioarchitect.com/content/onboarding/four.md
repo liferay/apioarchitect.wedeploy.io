@@ -30,7 +30,7 @@ dependencies {
 2\.  To expose your Router to OSGi, annotate your Router class with `@Component`. For example, here's the example `PersonRouter` class with the `@Component` annotation: 
 
 ```java
-//highlight-range{6,11}
+//highlight-range{7,12}
 package apio.architect.example;
 
 import com.liferay.apio.architect.annotation.Actions.Retrieve;
@@ -62,7 +62,7 @@ public class PersonRouter implements ActionRouter<Person> {
 ```
 
 ```kotlin
-//highlight-range{6,8}
+//highlight-range{7,9}
 package apio.architect.example
 
 import com.liferay.apio.architect.router.ActionRouter
