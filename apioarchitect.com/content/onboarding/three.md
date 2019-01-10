@@ -79,6 +79,7 @@ package apio.architect.example;
 
 import com.liferay.apio.architect.annotation.Actions.Retrieve;
 import com.liferay.apio.architect.annotation.EntryPoint;
+import com.liferay.apio.architect.annotation.Id;
 import com.liferay.apio.architect.router.ActionRouter;
 
 import java.util.Arrays;
@@ -109,6 +110,7 @@ package apio.architect.example
 import com.liferay.apio.architect.router.ActionRouter
 import com.liferay.apio.architect.annotation.Actions.Retrieve
 import com.liferay.apio.architect.annotation.EntryPoint
+import com.liferay.apio.architect.annotation.Id
 
 class PersonRouter : ActionRouter<Person> {
 

@@ -36,6 +36,7 @@ package apio.architect.example;
 import com.liferay.apio.architect.annotation.Actions.Retrieve;
 import com.liferay.apio.architect.annotation.EntryPoint;
 import com.liferay.apio.architect.router.ActionRouter;
+import com.liferay.apio.architect.annotation.Id;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.Arrays;
@@ -67,6 +68,7 @@ package apio.architect.example
 import com.liferay.apio.architect.router.ActionRouter
 import com.liferay.apio.architect.annotation.Actions.Retrieve
 import com.liferay.apio.architect.annotation.EntryPoint
+import com.liferay.apio.architect.annotation.Id
 import org.osgi.service.component.annotations.Component
 
 @Component
