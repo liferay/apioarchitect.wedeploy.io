@@ -32,7 +32,7 @@ plugins {
 }
 ```
 
-3\.  Configure your project's dependencies repositories by adding this `repositories` block in your project's `build.gradle` :
+3\.  Configure your project's dependency repositories by adding this `repositories` block in your project's `build.gradle`:
 
 ```groovy gradle
 repositories {
