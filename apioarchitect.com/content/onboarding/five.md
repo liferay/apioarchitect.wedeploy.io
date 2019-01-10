@@ -52,7 +52,8 @@ class CredentialsProvider : Provider<Credentials> {
 
 2\.  For this class to compile, you must add the `javax.servlet` dependency to your project's `build.gradle` file in the `dependencies` block:
 
-```groovy gradle
+```groovy
+//display-name{gradle}
 //highlight-range{4}
 dependencies {
     implementation group: "com.liferay", name: "com.liferay.apio.architect.api", version: "2.0.0-20181212.154022-16"
@@ -61,7 +62,8 @@ dependencies {
 }
 ```
 
-```kotlin kotlin-dsl
+```kotlin
+//display-name{kotlin-dsl}
 //highlight-range{6}
 dependencies {
     implementation(kotlin("stdlib"))
@@ -74,7 +76,8 @@ dependencies {
 
 3\.  Now, you must generate an OSGi container for your API. To do so, first include `biz.aQute.bnd.gradle` in your Gradle classpath by adding the following block at the beginning of your `build.gradle` file: 
 
-```groovy gradle
+```groovy
+//display-name{gradle}
 buildscript {
     repositories {
         mavenCentral()
@@ -85,7 +88,8 @@ buildscript {
 }
 ```
 
-```kotlin kotlin-dsl
+```kotlin
+//display-name{kotlin-dsl}
 buildscript {
     repositories {
         mavenCentral()
@@ -98,7 +102,8 @@ buildscript {
 
 4\.  Then add the following tasks to your `build.gradle` file:
 
-```groovy gradle
+```groovy
+//display-name{gradle}
 task resolve(type: aQute.bnd.gradle.Resolve) {
     bndrun 'example.bndrun'
 }
@@ -110,7 +115,8 @@ task run(type: aQute.bnd.gradle.Bndrun) {
 }
 ```
 
-```kotlin kotlin-dsl
+```kotlin
+//display-name{kotlin-dsl}
 tasks {
     register<aQute.bnd.gradle.Resolve>("resolve") {
         setBndrun("example.bndrun")
@@ -143,7 +149,8 @@ tasks {
 
 6\.  Then add these `runtime` dependencies to the `dependencies` block in your project's `build.gradle`: 
 
-```groovy gradle
+```groovy
+//display-name{gradle}
 //highlight-range{6-16}
 dependencies {
     implementation group: "com.liferay", name: "com.liferay.apio.architect.api", version: "2.0.0-20181212.154022-16"
@@ -164,7 +171,8 @@ dependencies {
 }
 ```
 
-```kotlin kotlin-dsl
+```kotlin
+//display-name{kotlin-dsl}
 //highlight-range{8-18}
 dependencies {
     implementation(kotlin("stdlib"))

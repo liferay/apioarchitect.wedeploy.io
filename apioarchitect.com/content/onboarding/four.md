@@ -9,7 +9,8 @@ Now you're ready to create the OSGi bundle for your API. Follow these steps to d
 
 1\.  Add the OSGi annotations dependency to the `dependencies` block in your `build.gradle`:
 
-```groovy gradle
+```groovy
+//display-name{gradle}
 //highlight-range{3}
 dependencies {
     implementation group: "com.liferay", name: "com.liferay.apio.architect.api", version: "2.0.0-20181212.154022-16"
@@ -17,7 +18,8 @@ dependencies {
 }
 ```
 
-```kotlin kotlin-dsl
+```kotlin
+//display-name{kotlin-dsl}
 //highlight-range{5}
 dependencies {
     implementation(kotlin("stdlib"))
@@ -88,7 +90,8 @@ class PersonRouter : ActionRouter<Person> {
 
 3\.  Add the Bndtools Gradle plugin to your `build.gradle` file. When you package your API in a JAR file, Bndtools ensures that JAR file is also an OSGi bundle: 
 
-```groovy gradle
+```groovy
+//display-name{gradle}
 //highlight-range{3}
 plugins {
     id 'java'
@@ -96,7 +99,8 @@ plugins {
 }
 ```
 
-```kotlin kotlin-dsl
+```kotlin
+//display-name{kotlin-dsl}
 //highlight-range{4}
 plugins {
     java
@@ -107,7 +111,8 @@ plugins {
 
 4\.  The JAR file's manifest (`MANIFEST.MF`) must contain the OSGi bundle's name, symbolic name, and version. To ensure that the manifest contains these properties every time you run the `jar` task in your project, add the following to your `build.gradle` file: 
 
-```groovy gradle
+```groovy
+//display-name{gradle}
 jar {
     manifest {
         attributes(
@@ -119,7 +124,8 @@ jar {
 }
 ```
 
-```kotlin kotlin-dsl
+```kotlin
+//display-name{kotlin-dsl}
 tasks.withType<Jar> {
     manifest {
         attributes(

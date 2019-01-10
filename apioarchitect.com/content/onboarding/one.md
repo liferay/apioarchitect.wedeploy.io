@@ -19,13 +19,15 @@ gradle init --type basic --dsl kotlin
 
 2\.  Apply the `java` plugin in your project's `build.gradle` file:
 
-```groovy gradle
+```groovy
+//display-name{gradle}
 plugins {
     id 'java'
 }
 ```
 
-```kotlin kotlin-dsl
+```kotlin
+//display-name{kotlin-dsl}
 plugins {
     java
     kotlin("jvm") version "1.3.10"
@@ -34,14 +36,16 @@ plugins {
 
 3\.  Configure your project's dependency repositories by adding this `repositories` block in your project's `build.gradle`:
 
-```groovy gradle
+```groovy
+//display-name{gradle}
 repositories {
     mavenCentral()
     jcenter()
 }
 ```
 
-```kotlin kotlin-dsl
+```kotlin
+//display-name{kotlin-dsl}
 repositories {
     mavenCentral()
     jcenter()
@@ -50,13 +54,15 @@ repositories {
 
 4\.  Add the Apio Architect API dependency to your project by adding this `dependencies` block in your project's `build.gradle`: 
 
-```groovy gradle
+```groovy
+//display-name{gradle}
 dependencies {
     implementation group: "com.liferay", name: "com.liferay.apio.architect.api", version: "2.0.0-20181212.154022-16"
 }
 ```
 
-```kotlin kotlin-dsl
+```kotlin
+//display-name{kotlin-dsl}
 dependencies {
     // These dependencies are needed to develop your APIs with Kotlin
     implementation(kotlin("stdlib"))

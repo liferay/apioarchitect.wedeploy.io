@@ -11,7 +11,8 @@ Start it up by running `./gradlew run` in your project's root directory.
 
 Wait a few seconds for the container to start up, then try your API by calling your two endpoints:
 
-```bash /person
+```bash
+//display-name{/person}
 curl localhost:8080/api/person -H "Accept: application/json"
 
 {
@@ -37,7 +38,8 @@ curl localhost:8080/api/person -H "Accept: application/json"
 }
 ```
 
-```bash /person/{id}
+```bash
+//display-name{/person/{id}}
 curl localhost:8080/api/person/1 -H "Accept: application/json"
 
 {
@@ -51,7 +53,8 @@ Note that you can also try your API with a quick JUnit test. Follow these steps 
 
 1\.  Add this code to your project's `build.gradle`:
 
-```groovy gradle
+```groovy
+//display-name{gradle}
 dependencies {
     // ... the other dependencies
 
@@ -65,7 +68,8 @@ test {
 }
 ```
 
-```kotlin kotlin-dsl
+```kotlin
+//display-name{kotlin-dsl}
 dependencies {
     // ... the other dependencies
 

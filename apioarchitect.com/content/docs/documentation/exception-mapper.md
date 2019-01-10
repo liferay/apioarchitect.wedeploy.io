@@ -29,7 +29,8 @@ public class NotFoundExceptionMapper implements ExceptionMapper<NotFoundExceptio
 
 With this exception mapper, each time an [action](/docs/reference/actions.html) throws a `NotFoundException`, Apio Architect converts it and returns a nicely formatted response:
 
-```json json
+```json
+//display-name{json}
 {
   "detail": "Unable to get blog posting comment 1111",
   "status": 404,
@@ -38,7 +39,8 @@ With this exception mapper, each time an [action](/docs/reference/actions.html) 
 }
 ```
 
-```json hal
+```json
+//display-name{hal}
 {
   "description": "Unable to get blog posting comment 1111",
   "statusCode": 404,
@@ -46,7 +48,8 @@ With this exception mapper, each time an [action](/docs/reference/actions.html) 
 }
 ```
 
-```json json-ld
+```json
+//display-name{json-ld}
 {
   "description": "Unable to get blog posting comment 1111",
   "statusCode": 404,
