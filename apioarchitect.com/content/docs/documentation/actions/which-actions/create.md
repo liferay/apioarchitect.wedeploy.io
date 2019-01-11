@@ -5,7 +5,7 @@ order: 2
 
 Represents a `POST` request on the resource's URI to create a new element. 
 
-A method annotated with `@Create` will instruct Apio Architect to declare an action used to create or add a new element to a colle ction, depending on the type of resource:
+A method annotated with `@Create` will instruct Apio Architect to declare an action used to create or add a new element to a collection, depending on the type of resource:
 
 ### Using `@Create` to create a new element
 

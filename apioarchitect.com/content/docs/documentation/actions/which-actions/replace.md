@@ -3,13 +3,13 @@ title: "Replace"
 order: 4
 ---
 
-Performed by executing a `PUT` request on the resource's URI. 
+Represents a `PUT` request on the resource's URI to replace an element. 
 
-When a method is annotated with `@Replace` the library will use it to replace data. This annotation can only be used to declare actions that replace individual elements.
+A method annotated with `@Replace` will instruct Apio Architect to map `PUT` requests to the mehod. This annotation can only be used to declare actions that replace individual elements.
 
 ### Using `@Replace` to replace a single element
 
-To tell Apio Architect that this action replaces a single `BlogPosting` we just need to add a parameter of the same type as our `BlogPosting`'s `ID` and annotate it with `@Id`. Also, we must add a parameter of the same type as our resource, annotated with `@Body` (this tells the library that this value must be recovered from the request's body).
+The `@Replace` should declare, as method parameters, the `@Id` of the resource that will be parsed from the URI, and the resource itself, retrieved from the request's `@Body`.
 
 > To create the parameter annotated with `@Body` Apio Architect will use the information obtained from the `BlogPosting`'s annotations. See [`@Field#mode`](/docs/reference/types.html#mode) for more information.
 
@@ -23,9 +23,11 @@ import org.osgi.service.component.annotations.Component;
 public class BlogPostingActionRouter implements ActionRouter<BlogPosting> {
     
     @Replace
-    BlogPosting replaceBlogPostingWithId(@Id long id, @Body BlogPosting blogPosting);
+    BlogPosting replaceBlogPostingWithId(@Id long id, @Body BlogPosting blogPosting) {
+        //Code to replace the stored blogPosting with specified id with the new value
+    }
     
 }
 ```
 
-Now executing a `PUT` request containing a `BlogPosting` as body to `http://server_url/api/blog-posting` will replace the blog posting with the provided `id`. 
+Apio Architect will map to the `replaceBlogPostingWithId` mehtod to every `PUT` request sent to `http://server_url/api/blog-posting/{id}`.`id`. 
