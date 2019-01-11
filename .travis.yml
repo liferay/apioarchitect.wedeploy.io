@@ -1,19 +1,18 @@
 language: node_js
-node_js: '9'
 
-before_install:
-  - nvm install 9
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.12.1
-  - export PATH=$HOME/.yarn/bin:$PATH
+node_js:
+  - 10.8
 
 cache:
-  yarn: true
+  directories:
+    - ~/.npm
+    - ~/.cache
 
-install:
-  - yarn
+before_script: cd apioarchitect.com
 
 script:
-  - cd apioarchitect.com
-  - rm -rf public/ .cache/
-  - yarn install
-  - yarn build
+  - npm install
+  - npm run build
+  - npm run serve & npm run wait-on http://localhost:8000
+  - npm run cy:run:record
+  - kill $(jobs -p) || true
