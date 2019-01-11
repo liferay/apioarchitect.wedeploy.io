@@ -13,6 +13,8 @@ Creating the transfer object makes these features available:
 
 First, you must create an annotated interface that extends the `Identifier` interface parameterized with the type. This tells Apio Architect which type class identifies the resource. In this example, the type is `Long`: 
 
+<span id="blog-posting"/>
+
 ```java
 @Type("BlogPosting")
 public interface BlogPosting extends Identifier<Long> {
@@ -86,7 +88,7 @@ public String getArticleBody(Locale locale)
 The `@Field` annotation contains these additional properties: 
 
 * `schemaURL`: Lets you configure the schema used. 
-* `mode`: Lets you set when the field is used. The type interface converts the object to a supported format and parses the body in a request. Some fields, however, only function in one such task. These `mode` property values let you choose when the field is used:
+* `mode`: <span id="mode"/>Lets you set when the field is used. The type interface converts the object to a supported format and parses the body in a request. Some fields, however, only function in one such task. These `mode` property values let you choose when the field is used:
 	* `READ_ONLY`: The field is used only for parsing the body.
 	* `WRITE_ONLY`: The field is used only for representing the entity.
 	* `READ_WRITE`: The field is used in both cases.
