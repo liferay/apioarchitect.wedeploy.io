@@ -18,7 +18,11 @@
     "develop": "rimraf public .cache && gatsby develop",
     "start": "npm run develop",
     "build": "gatsby build",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve -p 8000",
+    "cy:verify": "cypress verify",
+    "cy:run": "cypress run",
+    "cy:run:record": "cypress run --record",
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@mdx-js/mdx": "0.15.7",
@@ -63,8 +67,10 @@
     "wowjs": "1.1.3"
   },
   "devDependencies": {
+    "cypress": "^3.1.4",
     "gh-pages": "2.0.1",
     "globby": "8.0.1",
-    "rimraf": "2.6.3"
+    "rimraf": "2.6.3",
+    "wait-on": "^3.2.0"
   }
 }
