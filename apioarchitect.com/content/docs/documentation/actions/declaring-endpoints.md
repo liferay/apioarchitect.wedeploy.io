@@ -11,12 +11,11 @@ Apio Architect aims to make the API developer focus on the Resources rather than
 
  That way, the developer can abstract away from all the logic of handling URLs, verbs, and media-types, allowing them to focus only on the important things: **the semantics of the action**.
 
-
 ## Declaring an action
 
 Apio Architect aims to make the API developer focus on the Resources rather than to focus on thinking about URIs. Instead of directly declaring endpoints, the API developer will need define which **`@Action`s are available to be invoked on the resources**. That way, the developer can abstract away from all the logic of handling URLs, verbs, and media-types, and can focus only on the important things: **the semantics of the action**.
 
-Thus, an endpoint to `GET` (or retrieve) a  `BlogPosting` resource will be written with Apio Architect as simply as:
+Thus, an endpoint to `GET` (or retrieve) a `BlogPosting` resource will be written with Apio Architect as simply as:
 
 ```java
 @Retrieve

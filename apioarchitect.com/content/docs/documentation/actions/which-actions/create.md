@@ -3,13 +3,13 @@ title: "Create"
 order: 2
 ---
 
-Performed by executing a `POST` request on the resource's URI. 
+Represents a `POST` request on the resource's URI to create a new element. 
 
-When a method is annotated with `@Create` the library will use it to create data. This annotation can be used to declare actions that create and add elements to all types of collections. Let's see the use depending on each case:
+A method annotated with `@Create` will instruct Apio Architect to declare an action used to create or add a new element to a colle ction, depending on the type of resource:
 
 ### Using `@Create` to create a new element
 
-We can create an action to create new elements by creating a method with a parameter of the same type as our resource, annotated with `@Body` (this tells the library that this value must be recovered from the request's body).
+If the action should create a new resource, the method annotated with `@Create` should have a parameter of the same type as our resource, annotated with `@Body` (this instructs Apio Architect that this value must be retrieved from the request's body).
 
 > To create the parameter annotated with `@Body` Apio Architect will use the information obtained from the `BlogPosting`'s annotations. See [`@Field#mode`](/docs/reference/types.html#mode) for more information.
 
@@ -23,16 +23,20 @@ import org.osgi.service.component.annotations.Component;
 public class BlogPostingActionRouter implements ActionRouter<BlogPosting> {
     
     @Create
-    BlogPosting createBlogPosting(@Body BlogPosting blogPosting);
+    BlogPosting createBlogPosting(@Body BlogPosting blogPosting) {
+        // Code that persists the new BlogPosting
+    }
     
 }
 ```
 
-Now executing a `POST` request containing a `BlogPosting` as body to `http://server_url/api/blog-posting` will create a new `BlogPosting`, add it to the list and return it.
+With that action defined, Apio Architect will map the method invocation to any `POST` to  `http://server_url/api/blog-posting` and will parse the body to retrieve the `BlogPosting` and provide it as the argument.
 
 ### Using `@Create` to create a new element depending on a "parent" resource
 
-We can have the case where in order to create our element, we need information about a "parent" resource. For example, if we want to add a blog posting to a certain category, the typical URL for this case would be `category/{id}/blog-posting` so we can obtain the category `ID` information. In order to create such action we need to add a parameter of the same type as our parent's `ID` (`Category`'s `ID` in our example) and annotate it with `@ParentId`, providing the parent's type to the annotation. Also, we must add a parameter of the same type as our resource, annotated with `@Body` (this tells the library that this value must be recovered from the request's body).
+When the resource to be created is a nested resource (has a "parent"), such as adding a `BlogPosting` inside a `Category`, represented behind the URI `category/{categoryId}/blog-posting`, the parent resource's id (the `categoryId`, in the example) should be referenced.
+
+The `@ParentId` annotation on a method arguments instruct Apio Architect to parse the URL and fill the argument with the corresponding id. The annotation must be configured with the parent resource's type.
 
 > To create the parameter annotated with `@Body` Apio Architect will use the information obtained from the `BlogPosting`'s annotations. See [`@Field#mode`](/docs/reference/types.html#mode) for more information.
 
@@ -50,9 +54,12 @@ public class BlogPostingActionRouter implements ActionRouter<BlogPosting> {
     
     @Create
     BlogPosting createBlogPostingForCategoryWithId(
-        @ParentId(Category.class) String id, @Body BlogPosting blogPosting);
+        @ParentId(Category.class) String id, @Body BlogPosting blogPosting) {
+             /* Retrieve Category using category Id, 
+                and persist new blogPosting linked to Category Resurce */
+        }
     
 }
 ```
 
-Now executing a `POST` request containing a `BlogPosting` as body to `http://server_url/api/category/{id}/blog-posting` will create a new `BlogPosting` for the provided `Category`'s `id`, add it to the list and return it.
+Apio Architect will invoke this method whenever a `POST` request is received at  `http://server_url/api/category/{id}/blog-posting`, filling a the id parameter with the categoryIds from the URI and the new `BlogPosting` parsing the request body.
