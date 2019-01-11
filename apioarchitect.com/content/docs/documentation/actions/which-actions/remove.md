@@ -3,13 +3,13 @@ title: "Remove"
 order: 3
 ---
 
-Performed by executing a `DELETE` request on the resource's URI. 
+Represents a `DELETE` request on the resource's URI. 
 
-When a method is annotated with `@Remove` the library will use it to remove data. This annotation can only be used to declare actions that remove individual elements.
+A method annotated with `@Remove` will the library will instruct Apio Architect to map a `DELETE` method to the URI representing the Resource's type of the `ActionRouter`. This annotation can only be used to declare actions that remove individual elements.
 
 ### Using `@Remove` to delete a single element
 
-To tell Apio Architect that this action removes a single `BlogPosting` we just need to add a parameter of the same type as our `BlogPosting`'s `ID` and annotate it with `@Id`.
+The `@Remove` action's method should include an argument annotated with `@Id` which Apio Architect will use to parse and provide the resource's ide from the URI.
 
 > Remove actions are [idempotent](https://developer.mozilla.org/en-US/docs/Glossary/Idempotent), so it must always return `void`. Apio Architect will return a [`204`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204) as the API response.
 
@@ -23,9 +23,11 @@ import org.osgi.service.component.annotations.Component;
 public class BlogPostingActionRouter implements ActionRouter<BlogPosting> {
     
     @Remove
-    void removeBlogPostingWithId(@Id long id);
+    void removeBlogPostingWithId(@Id long id) {
+        //remove BlogPosting with id from persistent storage
+    }
     
 }
 ```
 
-Now performing a `DELETE` request to `http://server_url/api/blog-posting/{id}` will remove the blog posting with the provided `id`. 
+Apio Architect will invoke the `removeBlogPostingWithId`method on any `DELETE` request received on `http://server_url/api/blog-posting/{id}`, providing the `{id}` from the URI as parameter.
