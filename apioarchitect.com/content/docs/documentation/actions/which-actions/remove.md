@@ -3,15 +3,15 @@ title: "Remove"
 order: 3
 ---
 
-Represents a `DELETE` request on the resource's URI. 
+The `@Remove` annotation represents a `DELETE` request to the resource's URI. Annotating a method with `@Remove` instructs Apio Architect to map a `DELETE` method to the URI for the resource's type. This annotation can only be used to declare actions that remove individual elements.
 
-A method annotated with `@Remove` will the library will instruct Apio Architect to map a `DELETE` method to the URI representing the Resource's type of the `ActionRouter`. This annotation can only be used to declare actions that remove individual elements.
+## Using @Remove to Delete a Single Element
 
-### Using `@Remove` to delete a single element
+Methods annotated with `@Remove` must have an argument annotated with `@Id`. Apio Architect uses this to parse and provide the resource's ID from the URI. 
 
-The `@Remove` action's method should include an argument annotated with `@Id` which Apio Architect will use to parse and provide the resource's ide from the URI.
+> Note that remove actions are [idempotent](https://developer.mozilla.org/en-US/docs/Glossary/Idempotent), and therefore must always return `void`. Apio Architect returns a [`204`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204) as the API response. 
 
-> Remove actions are [idempotent](https://developer.mozilla.org/en-US/docs/Glossary/Idempotent), so it must always return `void`. Apio Architect will return a [`204`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204) as the API response.
+For example, here's a Router for the `BlogPosting` type that contains a `removeBlogPostingWithId` method annotated with `@Remove`. The `id` parameter is annotated with `@Id`:
 
 ```java
 import com.liferay.apio.architect.annotation.Actions.Remove;
@@ -30,4 +30,4 @@ public class BlogPostingActionRouter implements ActionRouter<BlogPosting> {
 }
 ```
 
-Apio Architect will invoke the `removeBlogPostingWithId`method on any `DELETE` request received on `http://server_url/api/blog-posting/{id}`, providing the `{id}` from the URI as parameter.
+Apio Architect invokes the `removeBlogPostingWithId` method on any `DELETE` request to `http://server_url/api/blog-posting/{id}`, providing the `{id}` from the URI as the method's parameter. 
