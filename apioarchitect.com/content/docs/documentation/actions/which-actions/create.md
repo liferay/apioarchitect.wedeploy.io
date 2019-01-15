@@ -3,15 +3,13 @@ title: "Create"
 order: 2
 ---
 
-Represents a `POST` request on the resource's URI to create a new element. 
+The `@Create` annotation represents a `POST` request to the resource's URI to create a new element. Annotating a method with `@Create` instructs Apio Architect to declare an action that creates or adds a new element to a collection, depending on the resource type. 
 
-A method annotated with `@Create` will instruct Apio Architect to declare an action used to create or add a new element to a collection, depending on the type of resource:
+## Using @Create to Create a New Element
 
-### Using `@Create` to create a new element
+If the action creates a new resource, the method annotated with `@Create` must have a parameter of the same type as that resource. You must also annotate that parameter with `@Body`. This instructs Apio Architect to retrieve the parameter value from the request's body, using the `mode` property of the resource type's `@Field` annotation. For more information, see the Field section in the [Types documentation](/docs/documentation/types.html).
 
-If the action should create a new resource, the method annotated with `@Create` should have a parameter of the same type as our resource, annotated with `@Body` (this instructs Apio Architect that this value must be retrieved from the request's body).
-
-> To create the parameter annotated with `@Body` Apio Architect will use the information obtained from the `BlogPosting`'s annotations. See [`@Field#mode`](/docs/reference/types.html#mode) for more information.
+For example, here's a Router for the `BlogPosting` type that contains a `createBlogPosting` method annotated with `@Create`. This method contains a `BlogPosting` parameter annotated with `@Body`: 
 
 ```java
 import com.liferay.apio.architect.annotation.Actions.Create;
@@ -30,15 +28,15 @@ public class BlogPostingActionRouter implements ActionRouter<BlogPosting> {
 }
 ```
 
-With that action defined, Apio Architect will map the method invocation to any `POST` to  `http://server_url/api/blog-posting` and will parse the body to retrieve the `BlogPosting` and provide it as the argument.
+Apio Architect maps the `createBlogPosting` method to `POST` requests sent to `http://server_url/api/blog-posting`. The body is parsed to retrieve the `BlogPosting` and provide it as the method's argument. 
 
-### Using `@Create` to create a new element depending on a "parent" resource
+## Using @Create to Create a New Element Depending on a Parent Resource
 
-When the resource to be created is a nested resource (has a "parent"), such as adding a `BlogPosting` inside a `Category`, represented behind the URI `category/{categoryId}/blog-posting`, the parent resource's id (the `categoryId`, in the example) should be referenced.
+When creating a nested resource (e.g., a resource with a parent resource), you must reference the parent resource's ID. For example, to create a `BlogPosting` in a `Category`, you must make a `POST` request to `category/{categoryId}/blog-posting`, replacing `{categoryId}` with the `Category`'s ID. 
 
-The `@ParentId` annotation on a method arguments instruct Apio Architect to parse the URL and fill the argument with the corresponding id. The annotation must be configured with the parent resource's type.
+For this to work, you must use the `@ParentId` annotation on an ID parameter in the method that creates the nested resource. This annotation instructs Apio Architect to parse the URL and fill the argument with the corresponding ID. You must configure the annotation with the parent resource's type. 
 
-> To create the parameter annotated with `@Body` Apio Architect will use the information obtained from the `BlogPosting`'s annotations. See [`@Field#mode`](/docs/reference/types.html#mode) for more information.
+For example, the `id` parameter for this method is annotated with `@ParentId(Category.class)`. This instructs Apio Architect to create a new resource (`BlogPosting`) in the `Category` that matches `id`:
 
 ```java
 import com.liferay.apio.architect.annotation.Actions.Create;
@@ -56,10 +54,10 @@ public class BlogPostingActionRouter implements ActionRouter<BlogPosting> {
     BlogPosting createBlogPostingForCategoryWithId(
         @ParentId(Category.class) String id, @Body BlogPosting blogPosting) {
              /* Retrieve Category using category Id, 
-                and persist new blogPosting linked to Category Resurce */
+                and persist new blogPosting linked to Category Resource */
         }
     
 }
 ```
 
-Apio Architect will invoke this method whenever a `POST` request is received at  `http://server_url/api/category/{id}/blog-posting`, filling a the id parameter with the categoryIds from the URI and the new `BlogPosting` parsing the request body.
+Apio Architect invokes this method whenever a `POST` request is received at `http://server_url/api/category/{categoryId}/blog-posting`, filling the `id` parameter with the `categoryId` from the URI. As before, the new `BlogPosting` is parsed from the request body and provided to the method as the `blogPosting` argument. 
